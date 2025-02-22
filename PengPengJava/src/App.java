@@ -5,6 +5,7 @@
 public class App {
     public static void main(String[] args) {
         // 類別Class - 1.組織程式的基礎單位 : 屬性、方法
+        // 類別Class - 2.物件實體的藍圖 : 建構式、屬性、方法
         // 屬性Attribute static 資料型態 屬性名稱 = 初始資料;
         System.out.println(test.a); // 10
         System.out.println(test2.c); // Hello
