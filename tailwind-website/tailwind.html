@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind練習</title>
+    <!-- 根據YT C w C 頻道的練習 https://youtu.be/HYQ0SzWHM7I?si=AV1Y0nKzr1VsyIre -->
+    <!-- 連結Tailwind -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- 
+    待調整:RWD破板問題，RWD圖片無置中
+    -->
+</head>
+
+<body class="bg-gray-300">
+    <header class="container mx-auto py-10 bg-blue-400 border-b-4">
+        <h2 class="text-5xl text-center text-blue-800">Hello,Tailwind</h2>
+    </header>
+    <main class="container mx-auto bg-blue-300 border-b-4">
+        <section class="flex flex-col text-blue-100 text-center text-5xl md:flex-row">
+            <div class="pb-15 pl-24 pr-24 bg-blue-500 hover:bg-blue-300">
+                <h3 class="mt-3 mb-3">HTML</h3>
+                <img class="w-80 h-80 " src="imgs/01_HTML.jpg" alt="">
+            </div>
+            <div class="pb-15 pl-24 pr-24 bg-blue-500 hover:bg-blue-300">
+                <h3 class="mt-3 mb-3">CSS</h3>
+                <img class="w-80 h-80" src="imgs/02.CSS.jpg" alt="">
+            </div>
+            <div class="pb-15 pl-24 pr-24 bg-blue-500 hover:bg-blue-300">
+                <h3 class="mt-3 mb-3">JS</h3>
+                <img class="w-80 h-80" src="imgs/03_js.jpg" alt="">
+            </div>
+        </section>
+
+    </main>
+    <footer class="container mx-auto py-10 bg-blue-400 border-b-4">
+        <h4 class="text-2xl text-center text-blue-800">&copy;Jessie 20250308 Tailwind CSS練習</h4>
+    </footer>
+</body>
+
+</html>
