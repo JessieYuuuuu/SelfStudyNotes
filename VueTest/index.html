@@ -9,29 +9,37 @@
 
 <body>
     <div id="app">
-        <button @click="num++">點擊+1</button><br>
-        點擊次數 : {{num}}
+        <div v-for="item in data">
+            <img :src="item.imageUrl" alt=""><br>
+            <h2>{{item.name}}</h2>
+            <h3>{{item.displayCategory}}</h3>
+            <p>{{item.status}}</p>
+            <p>{{item.price}}</p>
+        </div>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+        integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         Vue.createApp({
             data() {
                 return {
-                num:0,
+                    data: []
 
                 }
 
             },
             methods: {
-                // addNum(num){
-                //     num++;
-
-                // }
 
             },
             mounted() {
-
+                axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhqZ_uuMalB6KjxJAoeyFnWF2d8O4qQF8C0JyshM7OhPvnzuWXx1rFgbX8gYbx3YR8Y8SEzwzfyW-02reIqUM7RBEpNoeIrmlpIbj2EGdO6HMs9TVp2R0ZJmZk_5bARfajsZhBdvYExL-ebBJKgzLW_PsVQswtcxW9douagrrJEuA13xNEyPwn3CrJFB43b1gSIm4OTmCPShnD2RMohcd5g1b7UztPrdtZ9bSAKccrNta1WoG86Z8tw-wg2C1-DfbbN-Zp4KKS-kp4ce6vZotQEZaTyiA&lib=M4u3jSX4CNubVWVYGn1X0f5xHXOgmvvFb')
+                    .then((rsp) => {
+                        console.log(rsp.data);
+                        this.data = rsp.data;
+                    })
             },
         }).mount('#app')
     </script>
