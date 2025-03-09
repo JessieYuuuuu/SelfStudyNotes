@@ -13,8 +13,12 @@
             <img :src="item.imageUrl" alt=""><br>
             <h2>{{item.name}}</h2>
             <h3>{{item.displayCategory}}</h3>
-            <p>{{item.status}}</p>
-            <p>{{item.price}}</p>
+            <p>活動期間 : {{formattedStartDate(item.startDateTime)}} - {{formattedStartDate(item.endDateTime)}}</p>
+            <p>活動狀態 : {{item.status}}</p>
+            <p>票價 : {{item.price}}</p>
+            <button>加入購物車</button>
+            <button>立即購票</button>
+            <hr>
         </div>
     </div>
 
@@ -32,6 +36,22 @@
 
             },
             methods: {
+                formattedStartDate(starDate) {
+                    const date = new Date(starDate * 1000);
+                    return date.toLocaleString(); // 7/3/2024, 5:46:40 PM
+                    // return date.toLocaleDateString(); // 7/3/2024
+                    // return date.toDateString(); // Wed Jul 03 2024
+                    // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
+                    // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
+                },
+                formattedEndDate(endDate) {
+                    const date = new Date(endDate * 1000);
+                    return date.toLocaleString(); // 7/3/2024, 5:46:40 PM
+                    // return date.toLocaleDateString(); // 7/3/2024
+                    // return date.toDateString(); // Wed Jul 03 2024
+                    // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
+                    // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
+                }
 
             },
             mounted() {
