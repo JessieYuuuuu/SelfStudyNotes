@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="num++">點擊+1</button><br>
+        點擊次數 : {{num}}
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                num:0,
+
+                }
+
+            },
+            methods: {
+                // addNum(num){
+                //     num++;
+
+                // }
+
+            },
+            mounted() {
+
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
