@@ -27,9 +27,6 @@
                     <div>
                         <p class="text-xl font-bold text-center m-2">{{item.name}}</p>
                         <p class="text-xl m-2">活動類型 : {{item.displayCategory}}</p>
-                        <p class="text-xl m-2">活動期間 : {{formattedStartDate(item.startDateTime)}} -
-                            {{formattedStartDate(item.endDateTime)}}</p>
-                        <p class="text-xl m-2">活動狀態 : {{item.status}}</p>
                         <p class="text-xl m-2">票價 : {{item.price}}</p>
                     </div>
                 </label>
@@ -37,11 +34,12 @@
             <hr>
             <div class="flex justify-center">
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">刪除</button>
+                <p>總金額 : {{getAllPrice()}}</p>
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">確認購買</button>
             </div>
 
 
-    </main>
+        </main>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -52,15 +50,15 @@
         Vue.createApp({
             data() {
                 return {
-                    data: [],
-                    showModal: false,
-                    findData: [],
-                    cartList: [],
-
+                    data: [], // 原始商品列表
+                    showModal: false, // 商品詳情彈窗
+                    findData: [], // 存放彈窗要顯示的商品資料
+                    cartList: [], // 購物車清單
                 }
 
             },
             methods: {
+                // 修改日期模板
                 formattedStartDate(starDate) {
                     const date = new Date(starDate * 1000);
                     return date.toLocaleString(); // 7/3/2024, 5:46:40 PM
@@ -69,6 +67,7 @@
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                 },
+                // 修改日期模板
                 formattedEndDate(endDate) {
                     const date = new Date(endDate * 1000);
                     return date.toLocaleString(); // 7/3/2024, 5:46:40 PM
@@ -77,13 +76,17 @@
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                 },
+                // 從瀏覽器抓取儲存的購物車資料
                 loadCart() {
                     const storedCart = localStorage.getItem("cartList");
-                    console.log("瀏覽器存的資料:" + storedCart)
                     if (storedCart) {
                         this.cartList = JSON.parse(storedCart);
                     }
-                    console.log(this.cartList);
+                },
+                // 算購物車總額
+                getAllPrice() {
+                    // 使用 reduce() 計算總金額
+                    return this.cartList.reduce((AllPrice, cartItem) => AllPrice + cartItem.price, 0);
                 },
 
             },
@@ -92,7 +95,7 @@
                     .then((rsp) => {
                         this.data = rsp.data;
                     });
-                this.loadCart();
+                this.loadCart(); // 呼叫抓取購物車資料的function
             },
         }).mount('#app')
     </script>

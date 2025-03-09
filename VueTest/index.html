@@ -13,11 +13,12 @@
 
 <body>
     <div id="app">
-    <nav class="flex w-full sticky bg-red-100 top-0 leading-loose justify-center">
-        <a href="index.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">商品列表</a>
-        <a href="cart.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
-    </nav>
-    <main class="px-32">
+        <nav class="flex w-full sticky bg-red-100 top-0 leading-loose justify-center">
+            <a href="index.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">商品列表</a>
+            <a href="cart.html"
+                class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
+        </nav>
+        <main class="px-32">
 
             <section class="flex">
                 <div class="flex flex-none flex-col">
@@ -61,9 +62,9 @@
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
-        </main>
+            </section>
+    </div>
+    </main>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -74,13 +75,14 @@
         Vue.createApp({
             data() {
                 return {
-                    data: [],
-                    showModal: false,
-                    findData: [],
-                    cartList: [],
+                    data: [], // 原始商品列表
+                    showModal: false, // 商品詳情彈窗
+                    findData: [], // 存放彈窗要顯示的商品資料
+                    cartList: [], // 購物車清單
                 }
             },
             methods: {
+                // 修改日期模板
                 formattedStartDate(starDate) {
                     const date = new Date(starDate * 1000);
                     return date.toLocaleString(); // 7/3/2024, 5:46:40 PM
@@ -89,6 +91,7 @@
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                 },
+                // 修改日期模板
                 formattedEndDate(endDate) {
                     const date = new Date(endDate * 1000);
                     return date.toLocaleString(); // 7/3/2024, 5:46:40 PM
@@ -97,29 +100,24 @@
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                 },
+                // 抓取要顯示在彈窗的商品詳情
                 selectShow(id) {
-                    console.log(id);
                     const findSelectdata = this.data.find(item => item.id === id);
-                    console.log("find : " + findSelectdata);
                     this.findData = findSelectdata
                 },
+                // 新增商品到購物車
                 addCars(item) {
                     // 判斷購物車中是否已經有這個商品
-                    console.log(item);
                     const found = this.cartList.find(cartItem => cartItem.id === item.id);
-                if (!found) {
-                    this.cartList.push(item); // 如果沒有，加入購物車
-                } else {
-                    alert("這個商品已經在購物車中！");
-                }
-
-                    // this.cartList.push(item); // 如果沒有，加入購物車
-                    // alert("商品已經在購物車中！");
-
-                    console.log(this.cartList)
-                    // 儲存購物車到 localStorage
+                    if (!found) {
+                        this.cartList.push(item); // 如果沒有，加入購物車
+                    } else {
+                        alert("這個商品已經在購物車中！");
+                    }
+                    // 儲存購物車資料到 localStorage
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
                 },
+                // 從瀏覽器抓取儲存的購物車資料
                 // loadCart() {
                 //     const storedCart = localStorage.getItem("cartList");
                 //     console.log("瀏覽器存的資料:"+storedCart)
@@ -128,8 +126,6 @@
                 //     }
                 //     console.log(this.cartList);
                 // },
-
-
             },
             mounted() {
                 axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhqZ_uuMalB6KjxJAoeyFnWF2d8O4qQF8C0JyshM7OhPvnzuWXx1rFgbX8gYbx3YR8Y8SEzwzfyW-02reIqUM7RBEpNoeIrmlpIbj2EGdO6HMs9TVp2R0ZJmZk_5bARfajsZhBdvYExL-ebBJKgzLW_PsVQswtcxW9douagrrJEuA13xNEyPwn3CrJFB43b1gSIm4OTmCPShnD2RMohcd5g1b7UztPrdtZ9bSAKccrNta1WoG86Z8tw-wg2C1-DfbbN-Zp4KKS-kp4ce6vZotQEZaTyiA&lib=M4u3jSX4CNubVWVYGn1X0f5xHXOgmvvFb')
@@ -137,8 +133,8 @@
                         console.log(rsp.data);
                         this.data = rsp.data;
                     });
-                    
-                // this.loadCart();
+
+                // this.loadCart(); // 呼叫抓取購物車資料的function
             },
         }).mount('#app')
     </script>
