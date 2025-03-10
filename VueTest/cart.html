@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vue購物車</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
 
@@ -36,8 +36,38 @@
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                     @click="delCartList()">刪除</button>
                 <p>總金額 : {{getAllPrice()}}</p>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">確認購買</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                    @click="showModal = true">確認購買</button>
             </div>
+            <!-- 彈出視窗 -->
+            <div v-show="showModal" style="display: none;"
+                class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <!-- 外層彈窗容器，保持圓角並設定滾動 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 relative max-h-[80vh] overflow-y-auto">
+                    <!-- 內部可滾動內容 -->
+                    <p>感謝購買，以下為本次購買明細 :</p>
+                    <hr>
+                    <!-- 商品列表部分 -->
+                    <div class="flex flex-col p-6 space-y-4">
+                        <div v-for="item in cartList" :key="item.id" class="flex">
+                            <img class="h-24" :src="item.imageUrl" alt="">
+                            <div class="px-6">
+                                <p class="text-xl font-bold text-center m-2">{{item.name}}</p>
+                                <p class="text-xl m-2">票價 : {{item.price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button @click="showModal = false"
+                        class="inline-block text-red-500 px-4 py-2 rounded-md hover:text-red-600 absolute top-0 right-0 m-2">
+                        ✖
+                    </button>
+                    <div class="flex justify-center">
+                        <p>總金額 : {{getAllPrice()}}</p>
+                        <button @click="delList()">我瞭解了</button>
+                    </div>
+                </div>
+            </div>
+
 
 
         </main>
@@ -105,11 +135,23 @@
                     this.SelectList = [];
                     // 更新快取資料
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
-                }
+                },
+                delList() {
+                    console.log("subBtn");
+                    this.cartList = [];
+                    // 清空購物車清單後刪除快取，不要用儲存，不然陣列會變obj
+                    localStorage.removeItem("cartList");
+                    // 確保彈窗關閉
+                    this.showModal = false;
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 100);
+                },
 
 
             },
             mounted() {
+                this.showModal = false;
                 axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhqZ_uuMalB6KjxJAoeyFnWF2d8O4qQF8C0JyshM7OhPvnzuWXx1rFgbX8gYbx3YR8Y8SEzwzfyW-02reIqUM7RBEpNoeIrmlpIbj2EGdO6HMs9TVp2R0ZJmZk_5bARfajsZhBdvYExL-ebBJKgzLW_PsVQswtcxW9douagrrJEuA13xNEyPwn3CrJFB43b1gSIm4OTmCPShnD2RMohcd5g1b7UztPrdtZ9bSAKccrNta1WoG86Z8tw-wg2C1-DfbbN-Zp4KKS-kp4ce6vZotQEZaTyiA&lib=M4u3jSX4CNubVWVYGn1X0f5xHXOgmvvFb')
                     .then((rsp) => {
                         this.data = rsp.data;

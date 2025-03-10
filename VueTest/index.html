@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vue商品列表</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
 
@@ -37,7 +37,6 @@
                         <h2 class="break-words text-center">{{item.name}}</h2>
                     </button>
                     <!-- 彈出視窗 -->
-                    <!-- 修改這一行 -->
                     <div v-show="showModal" style="display: none;"
                         class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                         <div class="bg-white p-6 rounded-lg shadow-lg w-200 relative">
@@ -53,7 +52,7 @@
                                     <div class="flex justify-center">
                                         <button @click="addCars(findData)"
                                             class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">加入購物車</button>
-                                        <button
+                                        <button @click="addAndGoCars(findData)"
                                             class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">立即購票</button>
                                     </div>
                                 </div>
@@ -112,6 +111,7 @@
                 addCars(item) {
                     // 判斷購物車中是否已經有這個商品
                     const found = this.cartList.find(cartItem => cartItem.id === item.id);
+                    console.log("是否有物件",found);
                     if (!found) {
                         this.cartList.push(item); // 如果沒有，加入購物車
                     } else {
@@ -119,6 +119,30 @@
                     }
                     // 儲存購物車資料到 localStorage
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
+                    // 確保彈窗關閉
+                    this.showModal = false; 
+                },
+                // 直接購買
+                addAndGoCars(item) {
+                    console.log("傳入的資料",item);
+                    console.log("傳入的資料ID",item.id);
+                    console.log(this.cartList);
+                    // 判斷購物車中是否已經有這個商品
+                    const found = this.cartList.find(cartItem => cartItem.id === item.id);
+                    console.log("是否有物件",found);
+                    if (!found) {
+                        this.cartList.push(item); // 如果沒有，加入購物車
+                    } else {
+                        alert("這個商品已經在購物車中！");
+                    }
+                    // 儲存購物車資料到 localStorage
+                    localStorage.setItem("cartList", JSON.stringify(this.cartList));
+                    console.log(this.cartList);
+                    // 確保彈窗關閉
+                    this.showModal = false;
+                    setTimeout(() => {
+                        window.location.href = "cart.html";
+                    }, 100);
                 },
                 // 從瀏覽器抓取儲存的購物車資料
                 loadCart() {
