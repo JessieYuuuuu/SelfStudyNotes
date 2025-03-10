@@ -28,6 +28,7 @@
                     <button>親子活動</button>
                 </div>
                 <div class="grid grid-cols-4 content-center">
+                    <div v-if="loading">載入中...</div>
                     <!-- 顯示彈出視窗的按鈕 -->
                     <button @click="showModal = true,selectShow(item.id)"
                         class="bg-blue-50 m-3 text-black px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
@@ -36,7 +37,8 @@
                         <h2 class="break-words text-center">{{item.name}}</h2>
                     </button>
                     <!-- 彈出視窗 -->
-                    <div v-if="showModal"
+                    <!-- 修改這一行 -->
+                    <div v-show="showModal" style="display: none;"
                         class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                         <div class="bg-white p-6 rounded-lg shadow-lg w-200 relative">
                             <div class="flex p-6">
@@ -75,8 +77,9 @@
         Vue.createApp({
             data() {
                 return {
-                    data: [], // 原始商品列表
                     showModal: false, // 商品詳情彈窗
+                    loading: true,
+                    data: [], // 原始商品列表
                     findData: [], // 存放彈窗要顯示的商品資料
                     cartList: [], // 購物車清單
                 }
@@ -118,23 +121,36 @@
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
                 },
                 // 從瀏覽器抓取儲存的購物車資料
-                // loadCart() {
-                //     const storedCart = localStorage.getItem("cartList");
-                //     console.log("瀏覽器存的資料:"+storedCart)
-                //     if (storedCart) {
-                //         this.cartList = JSON.parse(storedCart);
-                //     }
-                //     console.log(this.cartList);
-                // },
+                loadCart() {
+                    const storedCart = localStorage.getItem("cartList");
+                    console.log("瀏覽器存的資料:" + storedCart)
+                    if (storedCart) {
+                        this.cartList = JSON.parse(storedCart);
+                    }
+                    console.log(this.cartList);
+                },
             },
             mounted() {
+                this.showModal = false;
+                // 進入頁面先請求商品列表快取
+                const cachedData = localStorage.getItem("productData");
+                if (cachedData) {
+                    this.data = JSON.parse(cachedData);
+                    this.loading = false;
+                }
                 axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhqZ_uuMalB6KjxJAoeyFnWF2d8O4qQF8C0JyshM7OhPvnzuWXx1rFgbX8gYbx3YR8Y8SEzwzfyW-02reIqUM7RBEpNoeIrmlpIbj2EGdO6HMs9TVp2R0ZJmZk_5bARfajsZhBdvYExL-ebBJKgzLW_PsVQswtcxW9douagrrJEuA13xNEyPwn3CrJFB43b1gSIm4OTmCPShnD2RMohcd5g1b7UztPrdtZ9bSAKccrNta1WoG86Z8tw-wg2C1-DfbbN-Zp4KKS-kp4ce6vZotQEZaTyiA&lib=M4u3jSX4CNubVWVYGn1X0f5xHXOgmvvFb')
                     .then((rsp) => {
                         console.log(rsp.data);
                         this.data = rsp.data;
+                        // 將商品列表存入瀏覽器
+                        localStorage.setItem("productData", JSON.stringify(this.data));
+                    })
+                    .finally(() => {
+                        // 增加載入提示
+                        this.loading = false;
                     });
 
-                // this.loadCart(); // 呼叫抓取購物車資料的function
+                this.loadCart(); // 呼叫抓取購物車資料的function
             },
         }).mount('#app')
     </script>
