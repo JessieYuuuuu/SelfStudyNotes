@@ -19,58 +19,79 @@
                 class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
         </nav>
         <main class="px-32">
-            <section class="flex">
-                <div class="flex flex-none flex-col">
-                    <button @click="selectCategory('')" class="py-4 px-16 text-xl bg">全部活動</button>
-                    <button @click="selectCategory('音樂')">音樂活動</button>
-                    <button @click="selectCategory('戲劇')">戲劇活動</button>
-                    <button @click="selectCategory('親子')">親子活動</button>
+            <section class="flex my-6">
+                <div class="flex flex-none flex-col border-2">
+                    <p>類別篩選</p>
+                    <button @click="selectCategory(''),selectCategoryBtn=true"
+                        class="py-4 px-16 text-xl bg">全部活動</button>
+                    <button @click="selectCategory('音樂'),selectCategoryBtn=true">音樂活動</button>
+                    <button @click="selectCategory('戲劇'),selectCategoryBtn=true">戲劇活動</button>
+                    <button @click="selectCategory('親子'),selectCategoryBtn=true">親子活動</button>
+                    <p>狀態篩選</p>
+                    <button @click="selectStatus(''),selectStatusBtn=true,selectCategoryBtn=false"
+                        class="py-4 px-16 text-xl bg">所有狀態</button>
+                    <button @click="selectStatus('已開始'),selectStatusBtn=true,selectCategoryBtn=false">活動開始</button>
+                    <button @click="selectStatus('已結束'),selectStatusBtn=true,selectCategoryBtn=false">活動結束</button>
+                    <button @click="selectStatus('尚未開始'),selectStatusBtn=true,selectCategoryBtn=false">尚未開始</button>
                 </div>
-                <div class="grid grid-cols-4 content-center">
-                    <!-- 資料未載入時的提示文字 -->
-                    <div v-if="loading">活動資料 載入中...</div>
-                    <!-- 顯示彈出視窗(活動詳情)的按鈕 -->
+
+                <!-- 資料未載入時的提示文字 -->
+                <div v-if="loading">活動資料 載入中...</div>
+
+                <!-- 顯示彈出視窗(活動詳情)的按鈕，篩選活動類型 -->
+                <div v-if="selectCategoryBtn" class="border-2 grid grid-cols-4 content-center">
                     <button @click="showModal = true,selectShow(item.id)"
                         class="bg-blue-50 m-3 text-black px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
                         v-for="item in selectCategoryList">
                         <img :src="item.imageUrl" alt=""><br>
                         <h2 class="break-words text-center">{{item.name}}</h2>
                     </button>
-                    <!-- 彈出視窗 (活動詳情)-->
-                    <div v-show="showModal" style="display: none;"
-                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                        <div class="bg-white p-6 rounded-lg shadow-lg w-200 relative">
-                            <!-- 活動詳情 -->
-                            <div class="flex p-6">
-                                <img :src="findData.imageUrl" alt=""><br>
-                                <div class="px-6">
-                                    <p class="text-xl font-bold text-center m-2">{{findData.name}}</p>
-                                    <p class="text-xl m-2">活動類型 : {{findData.displayCategory}}</p>
-                                    <p class="text-xl m-2">活動期間 : {{formattedStartDate(findData.startDateTime)}} -
-                                        {{formattedStartDate(findData.endDateTime)}}</p>
-                                    <p class="text-xl m-2">活動狀態 : {{findData.status}}</p>
-                                    <p class="text-xl m-2">活動票價 : {{findData.price}}</p>
-                                    <div class="flex justify-center">
-                                        <!-- 判斷該活動是否為已開始 -->
-                                        <div v-if="findData.status!='已開始'?addCarsBtnt==ture:addCarsBtnt==false">
-                                            <p>oops!!活動 {{findData.status}} !!</p>
-                                        </div>
-                                        <div v-if="findData.status==='已開始'?addCarsBtnt==ture:addCarsBtnt==false">
-                                            <button @click="addCars(findData)"
-                                                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">加入購物車</button>
-                                            <button @click="addAndGoCars(findData)"
-                                                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">立即購票</button>
-                                        </div>
+                </div>
+                <!-- 顯示彈出視窗(活動詳情)的按鈕，篩選活動狀態 -->
+                <div v-if="selectStatusBtn" class="border-2 grid grid-cols-4 content-center">
+                    <button @click="showModal = true,selectShow(item.id)"
+                        class="bg-blue-50 m-3 text-black px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
+                        v-for="item in selectStatusList">
+                        <img :src="item.imageUrl" alt=""><br>
+                        <h2 class="break-words text-center">{{item.name}}</h2>
+                    </button>
+                </div>
+
+                <!-- 彈出視窗 (活動詳情)-->
+                <div v-show="showModal" style="display: none;"
+                    class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-200 relative">
+                        <!-- 活動詳情 -->
+                        <div class="flex p-6">
+                            <img :src="findData.imageUrl" alt=""><br>
+                            <div class="px-6">
+                                <p class="text-xl font-bold text-center m-2">{{findData.name}}</p>
+                                <p class="text-xl m-2">活動類型 : {{findData.displayCategory}}</p>
+                                <p class="text-xl m-2">活動期間 : {{formattedStartDate(findData.startDateTime)}} -
+                                    {{formattedStartDate(findData.endDateTime)}}</p>
+                                <p class="text-xl m-2">活動狀態 : {{findData.status}}</p>
+                                <p class="text-xl m-2">活動票價 : {{findData.price}}</p>
+                                <div class="flex justify-center">
+                                    <!-- 判斷該活動是否為已開始 -->
+                                    <div v-if="findData.status!='已開始'?addCarsBtnt==ture:addCarsBtnt==false">
+                                        <p>oops!!活動 {{findData.status}} !!</p>
+                                    </div>
+                                    <div v-if="findData.status==='已開始'?addCarsBtnt==ture:addCarsBtnt==false">
+                                        <button @click="addCars(findData)"
+                                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">加入購物車</button>
+                                        <button @click="addAndGoCars(findData)"
+                                            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600">立即購票</button>
                                     </div>
                                 </div>
-                                <!-- 關閉彈窗按鈕 -->
-                                <button @click="showModal = false"
-                                    class="inline-block text-red-500 px-4 py-2 rounded-md hover:text-red-600 absolute top-0 right-0 m-2">
-                                    ✖
-                                </button>
                             </div>
+                            <!-- 關閉彈窗按鈕 -->
+                            <button @click="showModal = false"
+                                class="inline-block text-red-500 px-4 py-2 rounded-md hover:text-red-600 absolute top-0 right-0 m-2">
+                                ✖
+                            </button>
                         </div>
                     </div>
+                </div>
             </section>
         </main>
     </div>
@@ -89,7 +110,10 @@
                     data: [], // 活動列表
                     findData: [], // 存放彈窗要顯示的活動資料
                     cartList: [], // 購物車清單
-                    selectCategoryList: [],// 側邊欄要顯示的清單
+                    selectCategoryBtn: true, // 篩選活動類型後顯示的列表
+                    selectCategoryList: [], // 側邊欄要顯示的清單
+                    selectStatusBtn: false, // 篩選活動狀態後顯示的列表
+                    selectStatusList: [], // 清單狀態篩選
                 }
             },
             methods: {
@@ -111,7 +135,7 @@
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                 },
-                // 側邊欄篩選邏輯
+                // 側邊欄 - 活動類型 篩選邏輯
                 selectCategory(Category) {
                     console.log(Category);
                     if (Category === "") {
@@ -120,6 +144,18 @@
                     } else {
                         // 否則過濾出 Category 等於 Category 的資料
                         this.selectCategoryList = this.data.filter(data => data.displayCategory === Category);
+                    }
+                },
+                // 側邊欄 - 活動狀態 篩選邏輯
+                selectStatus(Status) {
+                    console.log(Status);
+                    console.log(this.selectCategoryList.status)
+                    if (Status === "") {
+                        // 如果 Status 為空，顯示所有資料
+                        this.selectStatusList = this.selectCategoryList;
+                    } else {
+                        // 否則過濾出 Status 等於 Status 的資料
+                        this.selectStatusList = this.selectCategoryList.filter(selectCategoryList => selectCategoryList.status === Status);
                     }
                 },
                 // 抓取要顯示在彈窗的活動詳情
