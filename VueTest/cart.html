@@ -19,33 +19,36 @@
                 class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
         </nav>
         <main class="px-32">
+            <div class="mt-6 min-h-[calc(100vh-8rem)] border-2 flex flex-col ">
+                <div class="flex-1" v-for="item in cartList" :key="item.id">
+                    <label class="border-2 m-2 p-6 flex" :for="item.id">
+                        <input class="m-5" :id="item.id" type="checkbox" @click="addSelect(item.id)">
+                        <img class="h-48" :src="item.imageUrl" alt=""><br>
+                        <div>
+                            <p class="text-xl font-bold text-center m-2">{{item.name}}</p>
+                            <p class="text-xl m-2">活動類型 : {{item.displayCategory}}</p>
+                            <p class="text-xl m-2">活動票價 : {{item.price}}</p>
+                            <button class="mr-auto bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                                @click="delOneCase(item.id)">刪除活動</button>
+                        </div>
+                    </label>
+                </div>
+                <hr>
+                <div class="flex justify-center mt-auto">
+                    <button class="mr-auto bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                        @click="delCartList()">批次刪除</button>
+                    <p>總金額 : {{getAllPrice()}}</p>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                        @click="showModal = true">確認購買</button>
+                </div>
+            </div>
 
-            <div v-for="item in cartList" :key="item.id">
-                <label class="border-2 m-2 p-6 flex" :for="item.id">
-                    <input class="m-5" :id="item.id" type="checkbox" @click="addSelect(item.id)">
-                    <img class="h-48" :src="item.imageUrl" alt=""><br>
-                    <div>
-                        <p class="text-xl font-bold text-center m-2">{{item.name}}</p>
-                        <p class="text-xl m-2">活動類型 : {{item.displayCategory}}</p>
-                        <p class="text-xl m-2">活動票價 : {{item.price}}</p>
-                    </div>
-                </label>
-            </div>
-            <hr>
-            <div class="flex justify-center">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                    @click="delCartList()">刪除活動</button>
-                <p>總金額 : {{getAllPrice()}}</p>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                    @click="showModal = true">確認購買</button>
-            </div>
-            <!-- 彈出視窗 -->
+            <!-- 彈出訂單明細視窗 -->
             <div v-show="showModal" style="display: none;"
                 class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                <!-- 外層彈窗容器，保持圓角並設定滾動 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 relative max-h-[80vh] overflow-y-auto">
                     <!-- 內部可滾動內容 -->
-                    <p>感謝您的購買，以下為本次購買明細 :</p>
+                    <p>感謝您的購買，以下為本次訂單明細 :</p>
                     <hr>
                     <!-- 活動列表部分 -->
                     <div class="flex flex-col p-6 space-y-4">
@@ -120,11 +123,19 @@
                     // 使用 reduce() 計算總金額
                     return this.cartList.reduce((AllPrice, cartItem) => AllPrice + cartItem.price, 0);
                 },
+                // 單選刪除邏輯
+                delOneCase(id) {
+                    // 購物車清單中刪除指定id
+                    this.cartList = this.cartList.filter(cartItem => cartItem.id !== id);
+                    // 更新快取
+                    localStorage.setItem("cartList", JSON.stringify(this.cartList));
+                },
                 // 將選取項目id加到SelectList
                 addSelect(id) {
                     this.SelectList.push(id);
                     console.log("選取清單", this.SelectList);
                 },
+                // 批次刪除邏輯
                 delCartList() {
                     console.log("delBtn");
                     console.log("購物清單", this.cartList);
@@ -136,6 +147,7 @@
                     // 更新快取資料
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
                 },
+                // 送出訂單後，清空購物車，導回商品列表
                 delList() {
                     console.log("subBtn");
                     this.cartList = [];

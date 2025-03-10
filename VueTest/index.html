@@ -60,15 +60,16 @@
                 <!-- 彈出視窗 (活動詳情)-->
                 <div v-show="showModal" style="display: none;"
                     class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div class="bg-white p-6 rounded-lg shadow-lg w-200 relative">
+                    <div class="bg-white p-6 rounded-lg shadow-lg max-w-[60%] relative">
                         <!-- 活動詳情 -->
                         <div class="flex p-6">
                             <img :src="findData.imageUrl" alt=""><br>
                             <div class="px-6">
                                 <p class="text-xl font-bold text-center m-2">{{findData.name}}</p>
                                 <p class="text-xl m-2">活動類型 : {{findData.displayCategory}}</p>
-                                <p class="text-xl m-2">活動期間 : {{formattedStartDate(findData.startDateTime)}} -
-                                    {{formattedStartDate(findData.endDateTime)}}</p>
+                                <p class="text-xl m-2">活動期間 : </p>
+                                {{formattedStartDate(findData.startDateTime)}} -
+                                    {{formattedStartDate(findData.endDateTime)}}
                                 <p class="text-xl m-2">活動狀態 : {{findData.status}}</p>
                                 <p class="text-xl m-2">活動票價 : {{findData.price}}</p>
                                 <div class="flex justify-center">
