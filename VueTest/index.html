@@ -19,13 +19,12 @@
                 class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
         </nav>
         <main class="px-32">
-
             <section class="flex">
                 <div class="flex flex-none flex-col">
-                    <button class="py-4 px-16 text-xl bg">全部活動</button>
-                    <button>音樂活動</button>
-                    <button>戲劇活動</button>
-                    <button>親子活動</button>
+                    <button @click="selectCategory('')" class="py-4 px-16 text-xl bg">全部活動</button>
+                    <button @click="selectCategory('音樂')">音樂活動</button>
+                    <button @click="selectCategory('戲劇')">戲劇活動</button>
+                    <button @click="selectCategory('親子')">親子活動</button>
                 </div>
                 <div class="grid grid-cols-4 content-center">
                     <!-- 資料未載入時的提示文字 -->
@@ -33,7 +32,7 @@
                     <!-- 顯示彈出視窗(活動詳情)的按鈕 -->
                     <button @click="showModal = true,selectShow(item.id)"
                         class="bg-blue-50 m-3 text-black px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
-                        v-for="item in data">
+                        v-for="item in selectCategoryList">
                         <img :src="item.imageUrl" alt=""><br>
                         <h2 class="break-words text-center">{{item.name}}</h2>
                     </button>
@@ -73,8 +72,7 @@
                         </div>
                     </div>
             </section>
-    </div>
-    </main>
+        </main>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -88,9 +86,10 @@
                     showModal: false, // 活動詳情彈窗
                     loading: true, // 資料載入文字提示
                     addCarsBtn: false, // 購物車按鈕
-                    data: [], // 原始活動列表
+                    data: [], // 活動列表
                     findData: [], // 存放彈窗要顯示的活動資料
                     cartList: [], // 購物車清單
+                    selectCategoryList: [],// 側邊欄要顯示的清單
                 }
             },
             methods: {
@@ -111,6 +110,17 @@
                     // return date.toDateString(); // Wed Jul 03 2024
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
+                },
+                // 側邊欄篩選邏輯
+                selectCategory(Category) {
+                    console.log(Category);
+                    if (Category === "") {
+                        // 如果 Category 為空，顯示所有資料
+                        this.selectCategoryList = this.data;
+                    } else {
+                        // 否則過濾出 Category 等於 Category 的資料
+                        this.selectCategoryList = this.data.filter(data => data.displayCategory === Category);
+                    }
                 },
                 // 抓取要顯示在彈窗的活動詳情
                 selectShow(id) {
@@ -170,21 +180,33 @@
                 // 進入頁面先請求活動列表快取
                 const cachedData = localStorage.getItem("productData");
                 if (cachedData) {
-                    this.data = JSON.parse(cachedData);
+                    this.selectCategoryList = JSON.parse(cachedData);
                     this.loading = false;
                 }
+                // 使用axios向API發出請求
                 axios.get('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhqZ_uuMalB6KjxJAoeyFnWF2d8O4qQF8C0JyshM7OhPvnzuWXx1rFgbX8gYbx3YR8Y8SEzwzfyW-02reIqUM7RBEpNoeIrmlpIbj2EGdO6HMs9TVp2R0ZJmZk_5bARfajsZhBdvYExL-ebBJKgzLW_PsVQswtcxW9douagrrJEuA13xNEyPwn3CrJFB43b1gSIm4OTmCPShnD2RMohcd5g1b7UztPrdtZ9bSAKccrNta1WoG86Z8tw-wg2C1-DfbbN-Zp4KKS-kp4ce6vZotQEZaTyiA&lib=M4u3jSX4CNubVWVYGn1X0f5xHXOgmvvFb')
                     .then((rsp) => {
-                        console.log(rsp.data);
-                        this.data = rsp.data;
-                        // 將活動列表存入瀏覽器
-                        localStorage.setItem("productData", JSON.stringify(this.data));
+                        // 資料取得成功後
+                        if (rsp.data && Array.isArray(rsp.data)) {
+                            this.data = rsp.data;
+                            // 複製一份data到selectCategoryList
+                            this.selectCategoryList = [...this.data];
+                            // 將selectCategoryList加入快取
+                            localStorage.setItem("productData", JSON.stringify(this.selectCategoryList));
+                        } else {
+                            // 可能顯示錯誤提示或設置預設資料
+                            console.error('資料格式錯誤:', rsp.data);
+                        }
+                    })
+                    .catch((error) => {
+                        // 可以顯示錯誤提示
+                        console.error('請求資料失敗:', error);
                     })
                     .finally(() => {
                         // 增加載入提示
                         this.loading = false;
                     });
-                // 呼叫抓取購物車資料的function
+                // 呼叫抓取購物車快取
                 this.loadCart();
             },
         }).mount('#app')
