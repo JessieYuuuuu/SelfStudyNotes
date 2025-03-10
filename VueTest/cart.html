@@ -14,7 +14,7 @@
 <body>
     <div id="app" v-for="item in cartList">
         <nav class="flex w-full sticky bg-red-100 top-0 leading-loose justify-center">
-            <a href="index.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">商品列表</a>
+            <a href="index.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">活動列表</a>
             <a href="cart.html"
                 class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
         </nav>
@@ -27,14 +27,14 @@
                     <div>
                         <p class="text-xl font-bold text-center m-2">{{item.name}}</p>
                         <p class="text-xl m-2">活動類型 : {{item.displayCategory}}</p>
-                        <p class="text-xl m-2">票價 : {{item.price}}</p>
+                        <p class="text-xl m-2">活動票價 : {{item.price}}</p>
                     </div>
                 </label>
             </div>
             <hr>
             <div class="flex justify-center">
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                    @click="delCartList()">刪除</button>
+                    @click="delCartList()">刪除活動</button>
                 <p>總金額 : {{getAllPrice()}}</p>
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                     @click="showModal = true">確認購買</button>
@@ -45,9 +45,9 @@
                 <!-- 外層彈窗容器，保持圓角並設定滾動 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg w-4/5 relative max-h-[80vh] overflow-y-auto">
                     <!-- 內部可滾動內容 -->
-                    <p>感謝購買，以下為本次購買明細 :</p>
+                    <p>感謝您的購買，以下為本次購買明細 :</p>
                     <hr>
-                    <!-- 商品列表部分 -->
+                    <!-- 活動列表部分 -->
                     <div class="flex flex-col p-6 space-y-4">
                         <div v-for="item in cartList" :key="item.id" class="flex">
                             <img class="h-24" :src="item.imageUrl" alt="">
@@ -62,8 +62,8 @@
                         ✖
                     </button>
                     <div class="flex justify-center">
-                        <p>總金額 : {{getAllPrice()}}</p>
-                        <button @click="delList()">我瞭解了</button>
+                        <p>總金額 : <span>{{getAllPrice()}}</span> 元</p>
+                        <button @click="delList()">我瞭解了 !</button>
                     </div>
                 </div>
             </div>
@@ -81,9 +81,9 @@
         Vue.createApp({
             data() {
                 return {
-                    data: [], // 原始商品列表
-                    showModal: false, // 商品詳情彈窗
-                    findData: [], // 存放彈窗要顯示的商品資料
+                    data: [], // 原始活動列表
+                    showModal: false, // 活動詳情彈窗
+                    findData: [], // 存放彈窗要顯示的活動資料
                     cartList: [], // 購物車清單
                     SelectList: [], //選取清單 : 邏輯->把被勾選的項目放刪除清單，點擊刪除鈕後刪除?
                 }
@@ -115,12 +115,12 @@
                         this.cartList = JSON.parse(storedCart);
                     }
                 },
-                // 算購物車總額
+                // 計算購物車總額
                 getAllPrice() {
                     // 使用 reduce() 計算總金額
                     return this.cartList.reduce((AllPrice, cartItem) => AllPrice + cartItem.price, 0);
                 },
-                // 將選取項目加到SelectList
+                // 將選取項目id加到SelectList
                 addSelect(id) {
                     this.SelectList.push(id);
                     console.log("選取清單", this.SelectList);
@@ -156,7 +156,8 @@
                     .then((rsp) => {
                         this.data = rsp.data;
                     });
-                this.loadCart(); // 呼叫抓取購物車資料的function
+                // 呼叫抓取購物車資料的function
+                this.loadCart();
             },
         }).mount('#app')
     </script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue商品列表</title>
+    <title>Vue活動列表</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
 
@@ -14,7 +14,7 @@
 <body>
     <div id="app">
         <nav class="flex w-full sticky bg-red-100 top-0 leading-loose justify-center">
-            <a href="index.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">商品列表</a>
+            <a href="index.html" class="py-6 w-1/4 text-center h-full hover:bg-red-600">活動列表</a>
             <a href="cart.html"
                 class="py-6 w-1/4 text-center h-full hover:bg-red-600">查看購物車<span>{{cartList.length}}</span></a>
         </nav>
@@ -22,24 +22,26 @@
 
             <section class="flex">
                 <div class="flex flex-none flex-col">
-                    <button class="py-4 px-16 text-xl bg">查看全部</button>
+                    <button class="py-4 px-16 text-xl bg">全部活動</button>
                     <button>音樂活動</button>
                     <button>戲劇活動</button>
                     <button>親子活動</button>
                 </div>
                 <div class="grid grid-cols-4 content-center">
-                    <div v-if="loading">載入中...</div>
-                    <!-- 顯示彈出視窗的按鈕 -->
+                    <!-- 資料未載入時的提示文字 -->
+                    <div v-if="loading">活動資料 載入中...</div>
+                    <!-- 顯示彈出視窗(活動詳情)的按鈕 -->
                     <button @click="showModal = true,selectShow(item.id)"
                         class="bg-blue-50 m-3 text-black px-4 py-2 rounded-md shadow-md hover:bg-blue-600"
                         v-for="item in data">
                         <img :src="item.imageUrl" alt=""><br>
                         <h2 class="break-words text-center">{{item.name}}</h2>
                     </button>
-                    <!-- 彈出視窗 -->
+                    <!-- 彈出視窗 (活動詳情)-->
                     <div v-show="showModal" style="display: none;"
                         class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                         <div class="bg-white p-6 rounded-lg shadow-lg w-200 relative">
+                            <!-- 活動詳情 -->
                             <div class="flex p-6">
                                 <img :src="findData.imageUrl" alt=""><br>
                                 <div class="px-6">
@@ -48,11 +50,11 @@
                                     <p class="text-xl m-2">活動期間 : {{formattedStartDate(findData.startDateTime)}} -
                                         {{formattedStartDate(findData.endDateTime)}}</p>
                                     <p class="text-xl m-2">活動狀態 : {{findData.status}}</p>
-                                    <p class="text-xl m-2">票價 : {{findData.price}}</p>
+                                    <p class="text-xl m-2">活動票價 : {{findData.price}}</p>
                                     <div class="flex justify-center">
+                                        <!-- 判斷該活動是否為已開始 -->
                                         <div v-if="findData.status!='已開始'?addCarsBtnt==ture:addCarsBtnt==false">
-                                            <p>活動 {{findData.status}}</p>
-
+                                            <p>oops!!活動 {{findData.status}} !!</p>
                                         </div>
                                         <div v-if="findData.status==='已開始'?addCarsBtnt==ture:addCarsBtnt==false">
                                             <button @click="addCars(findData)"
@@ -62,6 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- 關閉彈窗按鈕 -->
                                 <button @click="showModal = false"
                                     class="inline-block text-red-500 px-4 py-2 rounded-md hover:text-red-600 absolute top-0 right-0 m-2">
                                     ✖
@@ -82,12 +85,11 @@
         Vue.createApp({
             data() {
                 return {
-                    showModal: false, // 商品詳情彈窗
-                    loading: true,
-                    addCarsBtn: false,
-                    addCarsText:[],
-                    data: [], // 原始商品列表
-                    findData: [], // 存放彈窗要顯示的商品資料
+                    showModal: false, // 活動詳情彈窗
+                    loading: true, // 資料載入文字提示
+                    addCarsBtn: false, // 購物車按鈕
+                    data: [], // 原始活動列表
+                    findData: [], // 存放彈窗要顯示的活動資料
                     cartList: [], // 購物車清單
                 }
             },
@@ -110,44 +112,45 @@
                     // return date.toTimeString(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                     // return date.toJSON(); // 17:46:40 GMT+0800 (Taipei Standard Time)
                 },
-                // 抓取要顯示在彈窗的商品詳情
+                // 抓取要顯示在彈窗的活動詳情
                 selectShow(id) {
                     const findSelectdata = this.data.find(item => item.id === id);
                     this.findData = findSelectdata
                 },
-                // 新增商品到購物車
+                // 加入購物車
                 addCars(item) {
-                    // 判斷購物車中是否已經有這個商品
+                    // 判斷購物車中是否已經有這個活動
                     const found = this.cartList.find(cartItem => cartItem.id === item.id);
-                    console.log("是否有物件",found);
+                    console.log("是否有物件", found);
                     if (!found) {
                         this.cartList.push(item); // 如果沒有，加入購物車
                     } else {
-                        alert("這個商品已經在購物車中！");
+                        alert("這個活動已經在購物車中！");
                     }
                     // 儲存購物車資料到 localStorage
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
                     // 確保彈窗關閉
-                    this.showModal = false; 
+                    this.showModal = false;
                 },
                 // 直接購買
                 addAndGoCars(item) {
-                    console.log("傳入的資料",item);
-                    console.log("傳入的資料ID",item.id);
+                    console.log("傳入的資料", item);
+                    console.log("傳入的資料ID", item.id);
                     console.log(this.cartList);
-                    // 判斷購物車中是否已經有這個商品
+                    // 判斷購物車中是否已經有這個活動
                     const found = this.cartList.find(cartItem => cartItem.id === item.id);
-                    console.log("是否有物件",found);
+                    console.log("是否有物件", found);
                     if (!found) {
                         this.cartList.push(item); // 如果沒有，加入購物車
                     } else {
-                        alert("這個商品已經在購物車中！");
+                        alert("這個活動已經在購物車中！");
                     }
                     // 儲存購物車資料到 localStorage
                     localStorage.setItem("cartList", JSON.stringify(this.cartList));
                     console.log(this.cartList);
                     // 確保彈窗關閉
                     this.showModal = false;
+                    // 轉向購物車
                     setTimeout(() => {
                         window.location.href = "cart.html";
                     }, 100);
@@ -164,7 +167,7 @@
             },
             mounted() {
                 this.showModal = false;
-                // 進入頁面先請求商品列表快取
+                // 進入頁面先請求活動列表快取
                 const cachedData = localStorage.getItem("productData");
                 if (cachedData) {
                     this.data = JSON.parse(cachedData);
@@ -174,15 +177,15 @@
                     .then((rsp) => {
                         console.log(rsp.data);
                         this.data = rsp.data;
-                        // 將商品列表存入瀏覽器
+                        // 將活動列表存入瀏覽器
                         localStorage.setItem("productData", JSON.stringify(this.data));
                     })
                     .finally(() => {
                         // 增加載入提示
                         this.loading = false;
                     });
-
-                this.loadCart(); // 呼叫抓取購物車資料的function
+                // 呼叫抓取購物車資料的function
+                this.loadCart();
             },
         }).mount('#app')
     </script>
