@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex小節作業</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0 10px;
+      }
+      .headerFlex {
+        display: flex;
+        justify-content: end;
+      }
+      .flexBox {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .navFlex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navFlex ul {
+        display: flex;
+      }
+      .navFlex li {
+        display: block;
+        padding: 10px 15px;
+        text-align: center;
+        text-align: center;
+      }
+      .navFlex li:hover {
+        background-color: rgb(84, 177, 121);
+        color: white;
+        transition: 0.3s;
+      }
+      section .content {
+        display: flex;
+        justify-content: space-around;
+      }
+      .content {
+        margin-top: 20px;
+        width: 100%;
+        height: 500px;
+        gap: 20px;
+        align-items: start;
+      }
+      .flexItem {
+        width: 33%;
+        padding: 20px;
+        border: 1px solid #a9a9a9;
+        display: flex;
+        flex-direction: column;
+      }
+      .titleStyle {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        margin: 10px 0;
+      }
+      .textStyle {
+        line-height: 28px;
+      }
+      .flexItem li {
+        line-height: 28px;
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+      .footerFlex {
+        margin: 30px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+      span {
+        color: palevioletred;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="headerFlex">
+      <div class="flexBox">
+        <a href=""
+          ><img src="images/facebookIcon.png" alt="facebookIcon" />粉絲團</a
+        >
+        |
+        <a href=""
+          ><img src="images/twitterIcon.png" alt="twitterIcon" />追蹤我們</a
+        >
+      </div>
+    </header>
+    <nav class="navFlex">
+      <img src="images/logo.png" alt="" />
+      <ul>
+        <li>首頁</li>
+        <li>產品介紹</li>
+        <li>聯絡我們</li>
+      </ul>
+    </nav>
+    <p>六角學院</p>
+    <p>讓您奠定良好的前端基礎</p>
+    <img src="images/banner.png" alt="標題背景圖片" />
+    <section class="">
+      <div class="content">
+        <div class="flexItem">
+          <img src="images/html.png" alt="HTML5 Logo" />
+          <p class="titleStyle">Html 5 基礎教學</p>
+          <p class="textStyle">
+            主流前端網站設計的基礎就在六角學院，在這裡不在是填鴨式教學，而是透過實際的範例，瞭解正確的網站開發流程，講師均具有業界開發經驗，讓學員學習業界主流的開發方法。
+          </p>
+        </div>
+        <div class="flexItem">
+          <img src="images/rwd.png" alt="響應式網站設計" />
+          <p class="titleStyle">響應式網站設計</p>
+          <p class="textStyle">
+            響應式網站設計(Responsivewebdesign)，目前大多使用者均是以手機測覽的情況下，應式網站已經是必備的。六角學院將會提供業界醬應式開發方法，讓學生瞭解行動版開發技巧。
+          </p>
+        </div>
+        <div class="flexItem">
+          <img src="images/jQuery.png" alt="jQuery Logo" />
+          <p class="titleStyle">jQuery 實戰教學</p>
+          <p class="textStyle">本課程有以下特色</p>
+          <ul>
+            <li>瞭解變數的使用方法</li>
+            <li>學習並操作 DOM</li>
+            <li>學習基本數學運算方法</li>
+            <li>套件的操作及運用</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <footer class="footerFlex">
+      <img src="images/footerLogo.png" alt="" />
+      <div>
+        <p>聯絡我們：<span>hexschool@gmail.com</span></p>
+        <p>聯絡電話：<span>0999123456</span></p>
+      </div>
+    </footer>
+  </body>
+</html>
