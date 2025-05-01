@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業4_表頭表尾設計</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        width: 1278px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        margin: 0 auto;
+      }
+      header {
+        padding: 16px 48px;
+        background-color: #eaf0ed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        ul {
+          display: flex;
+          gap: 12px;
+          li {
+            display: block;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 140%;
+            color: #3f5d45;
+            border: 3px solid transparent;
+            &:hover {
+              border-bottom: 3px solid #3f5d45;
+            }
+          }
+        }
+      }
+      .item {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 608px;
+        margin: 0 auto;
+        h4 {
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 140%;
+          color: #000;
+        }
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        p {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 140%;
+          color: #000;
+        }
+      }
+      footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: #3f5d45;
+        padding: 16px 0;
+        ul {
+          display: flex;
+          gap: 12px;
+          li {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 140%;
+            color: #fff;
+            border: 3px solid transparent;
+            &:hover {
+              border-bottom: 3px solid #fff;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <img src="logo.png" alt="logo" />
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Product</li>
+          <li>Contact</li>
+        </ul>
+      </header>
+      <div class="item">
+        <h4>水文但知高</h4>
+        <div class="content">
+          <p>
+            一營她著站。市推用活體圖達了慢園、科權陽。過別馬目西化一腦食時不原刻不！常小小、聽天治母集士……治情高謝張愛引，如還要我的止。
+          </p>
+          <img src="pic.png" alt="甜點" />
+          <p>
+            則做於看外今科商各成實物區了料根於陽要樹！信是出皮造底教當報真在過往片養坐所奇這天知使書企靜當計過看謝有非銷人於觀教常生說一害人日時聞投懷有好坐
+          </p>
+        </div>
+      </div>
+      <footer>
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Product</li>
+          <li>Contact</li>
+        </ul>
+      </footer>
+    </div>
+    <!-- <div class="tips">
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>(header>img+ul>li*4)+(div.wrap>h4+(div.content>p+img+p))+(footer>ul>li*4)</p>
+    </div> -->
+  </body>
+</html>
