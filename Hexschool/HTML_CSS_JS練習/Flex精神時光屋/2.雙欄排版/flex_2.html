@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業2_雙欄排版</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        display: flex;
+        gap: 12px;
+        width: 1138px;
+        height: 888px;
+        margin: 0 auto;
+        padding: 8px;
+      }
+      .item {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        gap: 32px;
+        border-radius: 12px;
+        background-color: #eaf0ed;
+        h4 {
+          font-weight: 600;
+          font-size: 28px;
+          line-height: 120%;
+          color: #3f5d45;
+        }
+        p {
+          font-weight: 400;
+          font-size: 24px;
+          line-height: 140%;
+          color: #000;
+        }
+        .subText {
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 160%;
+          color: #3f5d45;
+        }
+      }
+      .leftItem {
+        justify-content: center;
+        align-items: center;
+      }
+      .rightItem {
+        padding: 32px 16px 80px 36px;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="item leftItem">
+        <img src="logo.png" alt="Sweetaste Logo" />
+      </div>
+      <div class="item rightItem">
+        <h4>為什麼選擇了做甜點？</h4>
+        <p>
+          青山依舊在，幾度夕陽紅。<br />慣看秋月春風。一壺酌酒喜相逢，<br />浪花淘盡英雄。是非成敗轉頭空，<br />滾滾長江東逝水，白髮漁樵江渚上，<br />古今多少事，都付笑談中。
+        </p>
+        <p>
+          是非成敗轉頭空，青山依舊在，幾度夕陽紅。<br />白髮漁樵江渚上，古今多少事，都付笑談中。
+        </p>
+        <p class="subText">—— 想吃甜點 是不需要理由的。</p>
+      </div>
+    </div>
+    <!-- <div class="tips">
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>
+        div.wrap>(div.item>img+h1{Sweetaste*})+(div.item>h4{為什麼選擇了做甜點？}+p{青山依舊在，幾度夕陽紅。<br />慣看秋月春風。一壺酌酒喜相逢，<br />浪花淘盡英雄。是非成敗轉頭空，<br />滾滾長江東逝水，白髮漁樵江渚上，<br />古今多少事，都付笑談中。}+p{是非成敗轉頭空，青山依舊在，幾度夕陽紅。<br />白髮漁樵江渚上，古今多少事，都付笑談中。}+p.subText{——
+        想吃甜點 是不需要理由的。})
+      </p>
+    </div> -->
+  </body>
+</html>
