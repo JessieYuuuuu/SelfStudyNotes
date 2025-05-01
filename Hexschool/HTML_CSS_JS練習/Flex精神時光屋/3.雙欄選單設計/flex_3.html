@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業3_雙欄選單設計</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        width: 1100px;
+        height: 812px;
+        margin: 0 auto;
+        display: flex;
+      }
+      .leftItem {
+        width: 324px;
+        padding: 0 13px;
+        padding-top: 64px;
+        background-color: #eaf0ed;
+        p {
+          text-align: center;
+          font-weight: 400;
+          font-size: 24px;
+          line-height: 140%;
+          padding: 6px 0;
+          margin: 6px 0;
+          color: #3f5d45;
+          &:hover {
+            color: #eaf0ed;
+            background-color: #3f5d45;
+            cursor: pointer;
+          }
+        }
+      }
+      .rightItem {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        padding: 64px 84px 12px;
+        background-color: #fff;
+        h4 {
+          font-weight: 600;
+          font-size: 28px;
+          line-height: 120%;
+          color: #3f5d45;
+        }
+        p {
+          font-weight: 400;
+          font-size: 24px;
+          line-height: 140%;
+          color: #000;
+        }
+        .imgBox {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="leftItem">
+        <ul>
+          <li><img src="logo.png" alt="logo" /></li>
+          <li>
+            <p>回到首頁</p>
+          </li>
+          <li>
+            <p>關於我們</p>
+          </li>
+          <li>
+            <p>熱銷產品</p>
+          </li>
+          <li>
+            <p>購物車</p>
+          </li>
+        </ul>
+      </div>
+      <div class="rightItem">
+        <h4>集使濟業看</h4>
+        <p>
+          麼時接發……分童阿卻在我，開似電停，我裡道的園水能金進以生參來題；毒業過立是哥：著要著久電受不身通比大！細不最時麼或公能因人外毒下生濟文政取業銷，也化投題已斷了勢地說在影家長親有得度了下成有統位你我育對此；量滿業明經：非位結是始大進，成花人上風分從否農。了大食大有石坐手，過更實的說！<br />
+          <br />
+          第全葉值不地要一際開為，濟職死的輕而知！孩來護屋維國以黃，最有都食明般在其怎康是人，活家
+          聞在建格不清體是心土壞頭不爾爸斷以情出不。
+        </p>
+        <div class="imgBox">
+          <img src="pic.png" alt="甜點" /><img src="pic.png" alt="甜點" /><img
+            src="pic.png"
+            alt="甜點"
+          /><img src="pic.png" alt="甜點" /><img src="pic.png" alt="甜點" /><img
+            src="pic.png"
+            alt="甜點"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- <div class="tips">
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>
+       div.wrap>(div.item>ul>(li>img)+((li>p)*4))+div.item>h4+p+(div.imgBox>img*6)
+</p>
+    </div> -->
+  </body>
+</html>
