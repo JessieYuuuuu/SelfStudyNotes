@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業1_並排卡片</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        display: flex;
+        gap: 24px;
+        background-color: #3f5d45;
+        width: 1164px;
+        margin: 0 auto;
+        justify-content: space-between;
+      }
+      .titleBox {
+        display: flex;
+        gap: 10px;
+        padding: 84px 72px;
+        background-color: #eaf0ed;
+        h1 {
+          font-size: 76px;
+          font-weight: 400;
+          line-height: 120%;
+          color: #3f5d45;
+        }
+      }
+      .subBox {
+        display: flex;
+        gap: 32px;
+        flex-direction: column;
+        padding: 32px 16px 80px 36px;
+        background-color: #ffffff;
+        h4 {
+          font-weight: 600;
+          font-size: 28px;
+          line-height: 120%;
+          color: #3f5d45;
+        }
+        span {
+          color: #cf3f3f;
+        }
+        P {
+          font-weight: 400;
+          font-size: 24px;
+          line-height: 140%;
+        }
+      }
+      .tips {
+        width: 1164px;
+        margin: 20px auto;
+        padding: 0 20px;
+        p {
+          font-size: 20px;
+          line-height: 120%;
+          color: #1c1c1c;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="iten">
+        <div class="titleBox">
+          <h1>標題一</h1>
+        </div>
+        <div class="subBox">
+          <h4>為什麼 一定要<span>吃甜點</span>?</h4>
+          <p class="text">
+            青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花掏盡英雄。
+          </p>
+        </div>
+      </div>
+      <div class="iten">
+        <div class="titleBox">
+          <h1>標題二</h1>
+        </div>
+        <div class="subBox">
+          <h4>為什麼 一定要<span>吃甜點</span>?</h4>
+          <p class="text">
+            青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花掏盡英雄。
+          </p>
+        </div>
+      </div>
+      <div class="iten">
+        <div class="titleBox">
+          <h1>標題三</h1>
+        </div>
+        <div class="subBox">
+          <h4>為什麼 一定要<span>吃甜點</span>?</h4>
+          <p class="text">
+            青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花掏盡英雄。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="tips">
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>
+        div.wrap>div.item*3>(div.titleBox>h1{標題})+(div.subBox>h4{為什麼
+        一定要<span>吃甜點</span>?}+p.text{青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花掏盡英雄。})
+      </p>
+    </div>
+  </body>
+</html>
