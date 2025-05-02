@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業9_訂單明細</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        width: 310px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 0 auto;
+        background-color: #fff;
+      }
+      .topItem,
+      .bottomItem {
+        border: 1px solid #eaf0ed;
+      }
+      .title {
+        padding: 16px 102px;
+        background-color: #eaf0ed;
+        text-align: center;
+        p {
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 140%;
+          color: #829886;
+        }
+      }
+      .topItem .text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+        .sub,
+        .subTotal {
+          display: flex;
+          gap: 8px;
+          justify-content: space-between;
+          p {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 140%;
+            color: #829886;
+          }
+        }
+        .subTotal {
+          p {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 140%;
+            color: #829886;
+          }
+        }
+      }
+      .bottomItem .text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+        .imgBox {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          .item {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            &:hover {
+              background-color: #eaf0ed;
+              cursor: pointer;
+            }
+            .sub {
+              display: flex;
+              flex-direction: column;
+              gap: 2px;
+              p {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 140%;
+                color: #829886;
+              }
+              .price {
+                font-weight: 600;
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topItem">
+        <div class="title">
+          <p>訂單摘要</p>
+        </div>
+        <div class="text">
+          <div class="sub">
+            <p>小計</p>
+            <p>NT$2,700</p>
+          </div>
+          <div class="sub">
+            <p>運費</p>
+            <p>NT$300</p>
+          </div>
+          <div class="subTotal">
+            <p>總計</p>
+            <p>NT$3,000</p>
+          </div>
+        </div>
+      </div>
+      <div class="bottomItem">
+        <div class="title">
+          <p>購物清單</p>
+        </div>
+        <div class="text">
+          <div class="imgBox">
+            <div class="item">
+              <img src="pic.png" alt="商品縮圖" />
+              <div class="sub">
+                <p>焦糖馬卡龍（2）</p>
+                <p class="price">NT$ 900</p>
+              </div>
+            </div>
+            <div class="item">
+              <img src="pic.png" alt="商品縮圖" />
+              <div class="sub">
+                <p>焦糖馬卡龍（2）</p>
+                <p class="price">NT$ 900</p>
+              </div>
+            </div>
+            <div class="item">
+              <img src="pic.png" alt="商品縮圖" />
+              <div class="sub">
+                <p>焦糖馬卡龍（2）</p>
+                <p class="price">NT$ 900</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div>
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>.wrap>(.topItem>(.title>p)+(.text>(.sub>p+p)*3))+(.bottomItem>(.title>p)+(.text>(.imgBox>(img+(.sub>p+p)))*3))</p>
+    </div> -->
+  </body>
+</html>
