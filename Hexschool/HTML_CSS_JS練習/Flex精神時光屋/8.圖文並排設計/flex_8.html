@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業8_圖文並排設計</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        width: 856px;
+        margin: 0 auto;
+        display: flex;
+      }
+      .item {
+        display: flex;
+        gap: 10px;
+        padding: 142px 56px;
+        background-color: #b3d4d1;
+        justify-content: center;
+        p {
+          font-weight: 400;
+          font-size: 24px;
+          line-height: 150%;
+          color: #fff;
+          letter-spacing: 3%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="item">
+        <p>
+          Presentations are communication tools that can be usued as lectures.
+        </p>
+      </div>
+      <img src="pic.png" alt="衝破陰霾的陽光" />
+    </div>
+    <!-- <div>
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>.warp>(.item>p)+img</p>
+    </div> -->
+  </body>
+</html>
