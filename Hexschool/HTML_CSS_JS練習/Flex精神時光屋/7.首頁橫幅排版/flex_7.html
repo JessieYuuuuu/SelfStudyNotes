@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業7_首頁橫幅排版</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        background-color: #0000001a;
+      }
+      .wrap {
+        width: 1146px;
+        margin: 0 auto;
+      }
+      .header {
+        display: flex;
+        flex-direction: column;
+        background-color: #eaf0ed;
+        gap: 30px;
+        height: 617px;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 148px;
+          height: 148px;
+        }
+        h1 {
+          font-weight: 600;
+          font-size: 28px;
+          line-height: 120%;
+          color: #3f5d45;
+        }
+      }
+      .footer {
+        display: flex;
+        padding: 16px 56px;
+        justify-content: space-between;
+        background-color: #fff;
+        ul {
+          display: flex;
+          gap: 20px;
+          a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 140%;
+            color: #000;
+            border: 3px solid transparent;
+            &:hover {
+              border-bottom: 3px solid #3f5d45;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <img src="headerLogo.png" alt="首頁LOGO" />
+        <h1>今天是個吃甜點的好日子。</h1>
+      </div>
+      <div class="footer">
+        <img src="footerLogo.png" alt="頁尾LOGO" />
+        <ul>
+          <li><a href="#">回首頁</a></li>
+          <li><a href="#">關於我們</a></li>
+          <li><a href="#">產品介紹</a></li>
+          <li><a href="#">聯絡我們</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div>
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>.wrap>(.header>img+h1)+(.footer>img+(ul>(li>a)*4))</p>
+    </div> -->
+  </body>
+</html>
