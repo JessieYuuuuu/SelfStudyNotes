@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業5_常見三種排版</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+        width: 1286px;
+        padding: 8px 0;
+        margin: 0 auto;
+      }
+      .topBox,
+      .topItem,
+      .centerBox,
+      .centerItem,
+      .centerItem .item,
+      .bottomBox,
+      .bottomItem,
+      .bottomItem .item {
+        display: flex;
+        background-color: #eaf0ed;
+      }
+      h4 {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 140%;
+        color: #3f5d45;
+      }
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: #3f5d45;
+      }
+      .topBox {
+        gap: 36px;
+        border-radius: 6px;
+        padding: 24px 28px;
+        .topItem {
+          gap: 12px;
+          img {
+            width: 54px;
+            height: 54px;
+          }
+          .item {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 8px 0;
+          }
+        }
+      }
+      .centerBox {
+        gap: 72px;
+        border-radius: 6px;
+        padding: 12px 40px;
+        .centerItem {
+          flex-direction: column;
+          gap: 12px;
+          align-items: center;
+          img {
+            width: 92px;
+            height: 92px;
+          }
+          .item {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+            padding: 8px 0;
+          }
+        }
+      }
+      .bottomBox {
+        flex-direction: column;
+        padding: 12px 28px;
+        border-radius: 6px;
+        .bottomItem {
+          gap: 12px;
+          img {
+            width: 135px;
+            height: 135px;
+          }
+          .item {
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+          }
+        }
+        .reverse {
+          flex-direction: row-reverse;
+          padding-left: 76px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topBox">
+        <div class="topItem">
+          <img src="logo-small.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+        <div class="topItem">
+          <img src="logo-small.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+        <div class="topItem">
+          <img src="logo-small.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="centerBox">
+        <div class="centerItem">
+          <img src="logo-medium.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+
+        <div class="centerItem">
+          <img src="logo-medium.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+
+        <div class="centerItem">
+          <img src="logo-medium.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="bottomBox">
+        <div class="bottomItem">
+          <img src="logo-big.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+        <div class="bottomItem reverse">
+          <img src="logo-big.png" alt="LOGO" />
+          <div class="item">
+            <h4>為什麼一定要吃甜點</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="tips">
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>.wrap>(.topBox>(.topItem>(img+(.item>h4{}+p)))*3)+(.centerBox>((.item>img+h4+p)*3)+(.bottomBox>(.bottomItem>(img+(.item>h4+p))*2))</p>
+    </div> -->
+  </body>
+</html>
