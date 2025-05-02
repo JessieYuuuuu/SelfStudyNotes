@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業10_產品列表</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .wrap {
+        width: 85vw;
+        display: flex;
+        gap: 24px;
+        background-color: #fff;
+        margin: 0 auto;
+      }
+      .aside {
+        width: 300px;
+        .sub {
+          padding: 18px 0;
+          border: 1px solid #eaf0ed;
+          text-align: center;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 140%;
+          color: #3f5d45;
+          &:hover {
+            background-color: #eaf0ed;
+          }
+        }
+        .title {
+          padding: 16px 0;
+          text-align: center;
+          background-color: #3f5d45;
+          color: #fff;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 140%;
+        }
+      }
+      .subItem {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        .card .text {
+          background-color: #fff;
+          display: flex;
+          p {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 140%;
+            color: #3f5d45;
+          }
+          .box {
+            flex: 2;
+            display: flex;
+            padding: 16px 0;
+            gap: 10px;
+            justify-content: center;
+          }
+          .priceBox {
+            border-width: 1px 1px 1px 0;
+            border-style: solid;
+            border-color: #eaf0ed;
+            flex: 1;
+          }
+          .price {
+            font-weight: 600;
+          }
+        }
+        button {
+          width: 100%;
+          background-color: #eaf0ed;
+          border: none;
+          padding: 24px 0;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 140%;
+          color: #3f5d45;
+          cursor: pointer;
+          &:hover {
+            background-color: #3f5d45;
+            color: #eaf0ed;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="aside">
+        <p class="title">甜點類別</p>
+        <p class="sub">所有甜點 (45)</p>
+        <p class="sub">本日精選 (10)</p>
+        <p class="sub">人氣精選 (26)</p>
+        <p class="sub">新品上市 (12)</p>
+      </div>
+      <div class="subItem">
+        <div class="card">
+          <img src="pic1.png" alt="甜點" />
+          <div class="text">
+            <div class="box">
+              <p>焦糖甜甜圈</p>
+            </div>
+            <div class="box priceBox">
+              <p class="price">NT$ 450</p>
+            </div>
+          </div>
+          <button>加入購物車</button>
+        </div>
+        <div class="card">
+          <img src="pic2.png" alt="甜點" />
+          <div class="text">
+            <div class="box">
+              <p>焦糖甜甜圈</p>
+            </div>
+            <div class="box priceBox">
+              <p class="price">NT$ 450</p>
+            </div>
+          </div>
+          <button>加入購物車</button>
+        </div>
+        <div class="card">
+          <img src="pic3.png" alt="甜點" />
+          <div class="text">
+            <div class="box">
+              <p>焦糖甜甜圈</p>
+            </div>
+            <div class="box priceBox">
+              <p class="price">NT$ 450</p>
+            </div>
+          </div>
+          <button>加入購物車</button>
+        </div>
+      </div>
+    </div>
+    <!-- <div>
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>.wrap>(.aside>p*5)+(.subItem>(.card>img+(.text>p*2)+button)*3)</p>
+    </div> -->
+  </body>
+</html>
