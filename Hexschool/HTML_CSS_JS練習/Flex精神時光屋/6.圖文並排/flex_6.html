@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex時光屋_作業6_圖文並排</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      .wrap {
+        width: 910px;
+        margin: 0 auto;
+        border: 12px solid #3f5d45;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #eaf0ed;
+        padding: 2px 32px;
+        a {
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 140%;
+          color: #3f5d45;
+        }
+      }
+      .center {
+        display: flex;
+        gap: 48px;
+        padding: 28px 56px;
+        background-color: #fff;
+        .item {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding-top: 20px;
+          .top {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            h4 {
+              font-weight: 600;
+              font-size: 24px;
+              line-height: 120%;
+              color: #000;
+            }
+            p {
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 140%;
+              color: #000;
+            }
+          }
+          .bottom {
+            display: flex;
+            gap: 12px;
+            a {
+              font-weight: 600;
+              font-size: 18px;
+              line-height: 140%;
+              color: #3f5d45;
+            }
+            .bg {
+              background-color: #acd2fe;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <img src="logo.png" alt="logo" />
+        <a href="#">more</a>
+      </div>
+      <div class="center">
+        <img src="pic.png" alt="甜點" />
+        <div class="item">
+          <div class="top">
+            <h4>想吃甜點 是不需要理由的。</h4>
+            <p>
+              青山依舊在，幾度夕陽紅。慣看秋月春風。一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。<br />
+              是非成敗轉頭空，青山依舊在，幾度夕陽紅。白髮漁樵江渚上，古今多少事，都付笑談中。
+            </p>
+          </div>
+          <div class="bottom">
+            <a class="bg" href="#">FB 分享</a><a href="#">IG 分享</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div>
+      <p>補充：有刻意使用emmet語法練習，一次生成清單，下面附上我用的語法</p>
+      <p>.wrap>(.header>img+p)+(.center>img+(.item>(.top>h4+p)+(.bottom>a*2)))</p>
+    </div> -->
+  </body>
+</html>
