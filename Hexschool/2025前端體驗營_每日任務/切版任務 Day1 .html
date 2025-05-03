@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day1 - HTML 標籤元素、CSS 判斷</title>
+    <style>
+      .orange {
+        color: orange;
+      }
+
+      .blue {
+        color: blue;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .yellow {
+        color: yellow;
+      }
+
+      .green {
+        color: green;
+      }
+      .bg {
+        background-color: #a3c2e0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML 程式碼 -->
+
+    <p class="green yellow orange bg">
+      我是P段落，文字顏色是什麼呢?區塊元素還是行內元素呢?
+    </p>
+    <p>
+      上面的P段落是綠色，因為在CSS裡面green是寫在最後面的，CSS樣式會根據CSS撰寫順序後蓋前，非在HTML中的套用順序；屬於區塊元素，會占用一整行。
+    </p>
+    <span class="red yellow green bg">
+      我是span，文字顏色是什麼呢?區塊元素還是行內元素呢?
+    </span>
+    <p>
+      上面span是綠色，理由同第一題；屬於行內元素，寬度與內容相同，會緊接在前方，不會自動換行排序。PS:之所以上方的span看起來好像獨佔一行，是因為span的前後都是p標籤，所以不是上面的span在換行，而是前後的p標籤在幫忙換行。
+    </p>
+    <div class="blue orange red bg">
+      我是div，文字顏色是什麼呢?區塊元素還是行內元素呢?
+    </div>
+    <p>上面div是紅色，理由同第一題；屬於區塊元素，獨佔一行。</p>
+    <a class="yellow blue green bg">
+      我是a連結，文字顏色是什麼呢?區塊元素還是行內元素呢?
+    </a>
+    <p>
+      上面a連結是綠色，理由同第一題；屬於行內元素，寬度與內容相同，不會自動換行排序。PS:之所以上方的a標籤看起來好像獨佔一行，是因為span的前後(a標籤前面div，後面是本行的p標籤)都是區塊元素，所以不是上面的a標籤在換行，而是前後的區塊元素在換行。
+    </p>
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX021dr9af-gZp35sLz_rHsquc_HsdEXDa2A&s"
+      alt="迷因貓"
+    />
+    我是img，區塊元素還是行內元素呢?
+    <p>上面img屬於行內元素，寬度與內容相同，不會自動換行排序。</p>
+    <p class="bg">
+      Tips：在p標籤、div、a標籤上加上background-color可以更直觀的看的行內元素根區塊元素的差異。
+    </p>
+  </body>
+</html>
