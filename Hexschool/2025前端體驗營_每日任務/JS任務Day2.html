@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day2 - 數字處理</title>
+    <style>
+      .wrap {
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        gap: 10px;
+      }
+      .item {
+        display: flex;
+        gap: 10px;
+        div {
+          background-color: #ff8c42;
+          padding: 0 10px;
+        }
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        background-color: #42b4ff;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="item">
+        <pre>
+  第一題平方計算
+  // input 輸入
+  square(3)
+  square(9)
+  square(20)
+  // output 輸出
+  9
+  81
+  400
+  </pre
+        >
+        <div>
+          <input type="number" id="num1" placeholder="請輸入數字" />
+          <p>輸出結果：<span id="squareAsn"></span></p>
+          <button onclick="clickSquare()">點我</button>
+        </div>
+      </div>
+      <div class="item">
+        <pre>
+第二題數學邏輯題
+// input 輸入
+calculate(5,7,3)
+calculate(9,8,7)
+calculate(5,2,0)
+calculate(9,9,33)
+// output 輸出
+9
+10
+7
+-15
+</pre
+        >
+        <div>
+          <input type="number" id="num2" placeholder="請輸入數字" /><br />
+          <input type="number" id="num3" placeholder="請輸入數字" /><br />
+          <input type="number" id="num4" placeholder="請輸入數字" />
+          <p>輸出結果：<span id="calculateAsn"></span></p>
+          <button onclick="clickCalculate()">點我</button>
+        </div>
+      </div>
+      <div class="item">
+        <pre>
+第三題四捨五入題
+// input 輸入
+rounding(3.9988)
+rounding(3984.222)
+rounding(77.777)
+// output 輸出
+4.00
+3984.22
+77.78
+</pre
+        >
+        <div>
+          <input type="number" id="num5" placeholder="請輸入數字" />
+          <p>輸出結果：<span id="roundingAsn"></span></p>
+          <button onclick="clickRounding()">點我</button>
+        </div>
+      </div>
+      <div class="item">
+        <pre>
+第四題字串轉數字
+// input 輸入
+parseNumber("2.33")
+parseNumber("Hello!!")
+parseNumber("30000")
+// output 輸出
+2.33
+NaN
+30000
+</pre
+        >
+        <div>
+          <input type="text" id="num6" placeholder="請輸入" />
+          <p>輸出結果：<span id="parseNumberAsn"></span></p>
+          <button onclick="clickParseNumber()">點我</button>
+        </div>
+      </div>
+      <div class="item">
+        <pre>
+第五題被二整除
+// input 輸入
+divisible(2)
+divisible(3)
+divisible(77)
+divisible(88)
+// output 輸出
+0
+1
+1
+0
+</pre
+        >
+        <div>
+          <input type="number" id="num7" placeholder="請輸入數字" />
+          <p>輸出結果：<span id="divisibleAsn"></span></p>
+          <button onclick="clickDivisible()">點我</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function square(num1) {
+        return `您輸入的參數 ${num1} ，它的平方是 ${num1 * num1}`;
+      }
+      function clickSquare() {
+        const num1 = Number(document.getElementById("num1").value);
+        const asn = square(num1);
+        document.getElementById("squareAsn").textContent = asn;
+      }
+      function calculate(num1, num2, num3) {
+        return `您輸入的參數 ${num1} - ${num2} + ${num3} ，答案是 ${
+          num1 - num2 + num3
+        }`;
+      }
+      function clickCalculate() {
+        const num1 = Number(document.getElementById("num2").value);
+        const num2 = Number(document.getElementById("num3").value);
+        const num3 = Number(document.getElementById("num4").value);
+        const asn = calculate(num1, num2, num3);
+        document.getElementById("calculateAsn").textContent = asn;
+      }
+      function rounding(num1) {
+        const ans = Math.round(num1);
+        return `您輸入的參數 ${num1}，四捨五入後是 ${ans}`;
+      }
+      function clickRounding() {
+        const num1 = Number(document.getElementById("num5").value);
+        const asn = rounding(num1);
+        document.getElementById("roundingAsn").textContent = asn;
+      }
+      function parseNumber(num1) {
+        const ans = Number(num1);
+        console.log(ans);
+        if (!isNaN(ans)) {
+          return `您輸入的參數 ${num1}，是數字 ${ans}`;
+        } else {
+          return `您輸入的參數 ${num1}，不是數字 ${ans}`;
+        }
+      }
+      function clickParseNumber() {
+        const num1 = document.getElementById("num6").value;
+        const asn = parseNumber(num1);
+        document.getElementById("parseNumberAsn").textContent = asn;
+      }
+      function divisible(num1) {
+        return `您輸入的參數 ${num1}，被二整除後，餘數是 ${num1 % 2}`;
+      }
+      function clickDivisible() {
+        const num1 = Number(document.getElementById("num7").value);
+        const asn = divisible(num1);
+        document.getElementById("divisibleAsn").textContent = asn;
+      }
+    </script>
+  </body>
+</html>

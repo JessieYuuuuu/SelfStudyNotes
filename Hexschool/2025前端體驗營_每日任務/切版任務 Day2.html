@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day2 - 圖片處理技巧</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .img {
+        /* 解法:將img變成區塊元素，就不會被行內元素的baseline特性影響 */
+        /* display: block;  */
+        /* 解法?:將vertical-align為 top/bottom/text-top/text-bottom 改變img跟父元素對齊的基準 */
+        /* vertical-align: top/boutton/text-top/text-bottom; */
+        background-color: #a3c2e0;
+        margin-left: 20px;
+        &:hover {
+          transform: scale(1.2);
+          transition: 0.5s;
+          background-color: #fc987f;
+          cursor: pointer;
+        }
+      }
+      .text {
+        background-color: #a3c2e0;
+      }
+      a {
+        text-decoration: none;
+        display: block;
+        margin: 10px 0;
+        color: #fc987f;
+      }
+      div {
+        border: 1px solid #a3c2e0;
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="https://tzuhui.io/2020/01/08/HTML/html-img-blank/"
+      target="_blank"
+      title="HTML img 下方有不明空隙？！"
+      >點我看文章-HTML img 下方有不明空隙？！</a
+    >
+    <img
+      class="img"
+      src="https://ithelp.ithome.com.tw/storage/image/logo.svg"
+      alt=""
+    />
+    <p class="text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo nostrum
+      officiis aspernatur.
+    </p>
+    <div>
+      <p>文章內提到的解法</p>
+      <p>display: block; -> 可以成功刪除img跟p標籤的縫隙</p>
+      <p>
+        vertical-align: top/boutton/text-top/text-bottom; -> 這個方式卻無效?
+      </p>
+    </div>
+  </body>
+</html>
