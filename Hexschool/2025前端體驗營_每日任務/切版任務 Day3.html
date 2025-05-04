@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day3 - box-sizing</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      .text {
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .box1 {
+        background-color: #000000;
+        color: #ffffff;
+        margin-bottom: 30px;
+        width: 300px;
+        padding: 16px;
+        border: 3px solid #000000;
+      }
+
+      .box2 {
+        background-color: #5e9eff;
+        color: #ffffff;
+        box-sizing: border-box;
+        width: 300px;
+        padding: 16px;
+        margin-bottom: 30px;
+        border: 3px solid #000000;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        line-height: 200%;
+        font-size: 20px;
+      }
+      span {
+        color: red;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>box-sizing屬性</h1>
+    <h4>content-box：content-box</h4>
+    <h3>容器所設定的寬高<span>不包含</span>border的寬高</h3>
+    <h4>content-box：border-box</h4>
+    <h3>容器所設定的寬高<span>包含</span>border的寬高</h3>
+    <hr />
+    <h2>box1：寬為 300px + 16px*2 + 3px*2 = 338px</h2>
+    <h2>box1：高為 24px*3 + 16px*2 + 3px*2 = 110px</h2>
+    <div class="box1">
+      <p class="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus quia
+        praesentium beatae velit?
+      </p>
+    </div>
+    <hr />
+    <h2>box2：寬為 300px = 300px</h2>
+    <h2>box2：高為 24px*3 + 16px*2 = 104px</h2>
+    <div class="box2">
+      <p class="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus quia
+        praesentium beatae velit?
+      </p>
+    </div>
+  </body>
+</html>

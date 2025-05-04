@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day3 - 字串設計</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="item">
+        <p>
+          題目一：<br />字串長度計算<br />// input 輸入<br />
+          checkStringLength("Hello") <br />checkStringLength("my name is
+          Tom！")<br />
+          // output 輸出<br />
+          5 15
+        </p>
+        <input type="text" id="s1" placeholder="請輸入" />
+        <p>輸出結果：<span class="q1"></span></p>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <div class="item">
+        <p>
+          題目二：英文強制小寫<br />// input 輸入<br />
+          lowerCase("FOKFF@gmail.com")<br />
+          lowerCase("gonSakpm@gmail.com") <br />// output 輸出<br />
+          "fokff@gmail.com" "gonsakpm@gmail.com"
+        </p>
+        <input type="text" id="s2" placeholder="請輸入" />
+        <p>輸出結果：<span class="q2"></span></p>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <div class="item">
+        <p>
+          題目三：去除掉段落的左右空白<br />// input 輸入 <br />trimString(" hi,
+          mom! ")<br />
+          trimString(" aa@gmail.com ")<br />
+          // output 輸出 <br />"hi, mom!" <br />"aa@gmail.com"
+        </p>
+        <input type="text" id="s3" placeholder="請輸入" />
+        <p>輸出結果：<span class="q3"></span></p>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <div class="item">
+        <p>
+          題目四：字串依照條件轉陣列<br />// input 輸入<br />
+          splitString("black,red,white") <br />splitString("coffee,tea")<br />
+          // output 輸出 <br />// ["black","red","white"] <br />//
+          ["coffee","tea"]
+        </p>
+        <input type="text" id="s4" placeholder="請輸入" /><br />
+        <p>輸出結果：<span class="q4"></span></p>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+      <div class="item">
+        <p>
+          題目五：切割市區字串<br />
+          // input 輸入 <br />getArea("高雄市前鎮區一心二路33號");<br />
+          getArea("高雄市新興區新興路66號"); <br />// output 輸出 <br />"前鎮區"
+          "新興區"<br />
+
+          <input type="text" id="s5" placeholder="請輸入" /><br />
+        </p>
+        <p>輸出結果：<span class="q5"></span></p>
+        <button onclick="changeQ5()">按我</button>
+      </div>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      const q4 = document.getElementsByClassName("q4")[0];
+      const q5 = document.getElementsByClassName("q5")[0];
+      // ----------
+      function checkStringLength(str) {
+        return str.length;
+      }
+      function changeQ1() {
+        const str = document.getElementById("s1").value;
+        const text = checkStringLength(str);
+        q1.textContent = text;
+      }
+      // ----------
+      function lowerCase(str) {
+        return str.toLowerCase();
+      }
+      function changeQ2() {
+        const str = document.getElementById("s2").value;
+        const text = lowerCase(str);
+        q2.textContent = text;
+      }
+      // ----------
+      function trimString(str) {
+        return str.trim();
+      }
+      function changeQ3() {
+        const str = document.getElementById("s3").value;
+        const text = trimString(str);
+        q3.textContent = text;
+      }
+      // ----------
+      function splitString(str) {
+        const arr = str.split(",").map((item) => `'${item.trim()}'`);
+        return `[${arr.join(",")}]`;
+      }
+      function changeQ4() {
+        const str = document.getElementById("s4").value;
+        const text = splitString(str);
+        q4.textContent = text;
+      }
+      // ----------
+      function getArea(str) {
+        const res = str.match(/(.+[市縣])(.+區)/);
+        if (res) {
+          console.log(res);
+          return res[2];
+        } else {
+          return `請確認輸入內容！`;
+        }
+      }
+      function changeQ5() {
+        const str = document.getElementById("s5").value;
+        const text = getArea(str);
+        q5.textContent = text;
+      }
+    </script>
+  </body>
+</html>

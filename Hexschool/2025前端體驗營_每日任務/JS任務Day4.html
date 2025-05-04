@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day4 - 比較與邏輯運算子</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  -->
+      <div class="item">
+        <p>
+          題目一：<br />比大小<br />// input 輸入<br />
+          higher(3,2) <br />higher(100,299)<br />
+          // output 輸出<br />
+          true false
+        </p>
+        <input type="number" id="s1" placeholder="請輸入" />
+        <input type="number" id="s1_1" placeholder="請輸入" />
+        <p>輸出結果：<span class="q1"></span></p>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目二：布林反轉<br />// input 輸入<br />
+          booleanToggle(true)<br />
+          booleanToggle(false)<br />// output 輸出<br />
+          false true
+        </p>
+        <div>
+          <input type="radio" class="s2" name="s2" value="true" />true
+          <input type="radio" class="s2" name="s2" value="false" />false
+        </div>
+        <p>輸出結果：<span class="q2"></span></p>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目三：型別判斷<br />// input 輸入 <br />checkType(3.33)<br />
+          checkType("Hello")<br />
+          // output 輸出 <br />"number" "string"
+        </p>
+        <input type="text" id="s3" placeholder="請輸入" />
+        <p>輸出結果：<span class="q3"></span></p>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目四：打八折後，是否總價大於 100 元<br />// input 輸入<br />
+          onSale(150) <br />onSale(125)<br />
+          // output 輸出 <br />true false
+        </p>
+        <input type="number" id="s4" placeholder="請輸入" /><br />
+        <p>輸出結果：<span class="q4"></span></p>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+      <div class="item">
+        <p>
+          題目五：是否大於 200，且符合會員條件<br />
+          // input 輸入 <br />checkVIP(300,true)<br />
+          checkVIP(0,true)<br />// output 輸出 <br />true false<br />
+        </p>
+
+        <div>
+          <p>是否登入會員?</p>
+          <input type="radio" class="s5" name="s5" value="true" />是
+          <input type="radio" class="s5" name="s5" value="false" />否
+        </div>
+        <input type="number" id="s5" placeholder="請輸入金額" /><br />
+        <p>輸出結果：<span class="q5"></span></p>
+        <button onclick="changeQ5()">按我</button>
+      </div>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      const q4 = document.getElementsByClassName("q4")[0];
+      const q5 = document.getElementsByClassName("q5")[0];
+      // -----1-----
+      function higher(num1, num2) {
+        return num1 > num2;
+      }
+      function changeQ1() {
+        const num1 = Number(document.getElementById("s1").value);
+        const num2 = Number(document.getElementById("s1_1").value);
+        const text = higher(num1, num2);
+        q1.textContent = text;
+      }
+      // -----2-----
+      function booleanToggle(str) {
+        if (str === "true") {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      function changeQ2() {
+        const str = document.querySelector(".s2:checked")?.value;
+        const text = booleanToggle(str);
+        q2.textContent = text;
+      }
+      // -----3-----
+      function checkType(str) {
+        try {
+          const type = JSON.parse(str);
+          return typeof type;
+        } catch (e) {
+          return "string";
+        }
+      }
+      function changeQ3() {
+        const str = document.getElementById("s3").value;
+        const text = checkType(str);
+        q3.textContent = text;
+      }
+      // -----4-----
+      function onSale(num) {
+        const sale = num * 0.8;
+        return sale > 100;
+      }
+      function changeQ4() {
+        const num = Number(document.getElementById("s4").value);
+        const text = onSale(num);
+        q4.textContent = text;
+      }
+      // ----5------
+      function checkVIP(isVIP, num) {
+        return isVIP && num > 200;
+      }
+      function changeQ5() {
+        const isVIP = document.querySelector(".s5:checked").value;
+        const num = Number(document.getElementById("s5").value);
+        const text = checkVIP(isVIP, num);
+        q5.textContent = text;
+      }
+    </script>
+  </body>
+</html>
