@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day5 - if 流程判斷</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  -->
+      <div class="item">
+        <p>
+          題目一：成年計算機 ( 備註：18 歲為成年年紀 )<br />// input 輸入<br />
+          checkAdult(20) checkAdult(12) checkAdult(33) checkAdult(18)<br />
+          // output 輸出<br />
+          "成年" "未成年" "成年" "成年"
+        </p>
+        <input type="number" id="num1" placeholder="請輸入年齡" />
+        <p>輸出結果：<span class="q1"></span></p>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目二：法定性行為年紀計算機( 16歲 )<br />// input 輸入<br />
+          canSex(16,"male") canSex(14,"female") canSex(20,"female")<br />//
+          output 輸出<br />
+          "可以色色" "你還不行哦~" "可以色色"
+        </p>
+        <div>
+          <input type="number" id="num2" placeholder="請輸入年齡" />
+          <input type="radio" class="s2" name="s2" value="male" />male
+          <input type="radio" class="s2" name="s2" value="female" />female
+        </div>
+        <p>輸出結果：<span class="q2"></span></p>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目三：滿 300 即可符合優惠條件，能使用 50 元折價券<br />// input 輸入
+          <br />buy(450) buy(299) buy(0) buy(-30) buy(300) buy(1000)<br />
+          // output 輸出 <br />"符合優惠券資格，費用是 400"
+          "不優惠券資格，費用是 299" "...你來亂的嗎？" "再鬧我就生氣了哦~"
+          "剛好符合資格，費用是 250" "符合優惠券資格，費用是 950"
+        </p>
+        <input type="number" id="num3" placeholder="請輸入費用" />
+        <p>輸出結果：<span class="q3"></span></p>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          <span style="color: red; font-weight: 600">進階題</span
+          >：是否為質數？<br />// input 輸入<br />
+          isPrime(29) isPrime(17) isPrime(-3) isPrime(288) isPrime(97)
+          isPrime(6)<br />
+          // output 輸出 <br />"是質數" "是質數" "無法判別" "我只能算 100
+          以內的質數計算，原諒我QQ" "是質數" "不是質數"
+        </p>
+        <input type="number" id="s4" placeholder="請輸入數字" /><br />
+        <p>輸出結果：<span class="q4"></span></p>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      const q4 = document.getElementsByClassName("q4")[0];
+      const q5 = document.getElementsByClassName("q5")[0];
+      // -----1-----
+      function checkAdult(num) {
+        if (num >= 18) {
+          return "成年";
+        } else {
+          return "未成年";
+        }
+      }
+      function changeQ1() {
+        const num = Number(document.getElementById("num1").value);
+        const text = checkAdult(num);
+        q1.textContent = text;
+      }
+      // -----2-----
+      function canSex(num, str) {
+        if (num >= 16) {
+          return `${str == "male" ? "你" : "妳"}可以瑟瑟~`;
+        } else {
+          return `${str == "male" ? "你" : "妳"}還不行喔~`;
+        }
+      }
+      function changeQ2() {
+        const num = Number(document.getElementById("num2").value);
+        const str = document.querySelector(".s2:checked")?.value;
+        const text = canSex(num, str);
+        q2.textContent = text;
+      }
+      // -----3-----
+      function buy(num) {
+        if (num < 0) {
+          return `再鬧我就生氣了哦~`;
+        } else if (num === 0) {
+          return `...你來亂的嗎？`;
+        } else if (num < 300) {
+          return `不符合優惠券資格，費用是${num}`;
+        } else if (num == 300) {
+          return `剛好符合優惠券資格，費用是${num - 50}`;
+        } else if (num > 300) {
+          return `符合優惠券資格，費用是${num - 50}`;
+        }
+      }
+      function changeQ3() {
+        const num = Number(document.getElementById("num3").value);
+        const text = buy(num);
+        q3.textContent = text;
+      }
+      // -----4-----
+      function isPrime(num) {
+        let prime = [];
+        for (let i = 2; i < num; i++) {
+          if (num % i === 0) {
+            prime.push(i);
+          }
+        }
+        if (prime.length) {
+          return `${num}不是質數，除了自己以外還可以被${prime}整除。`;
+        } else {
+          return `${num}是質數。`;
+        }
+      }
+      function changeQ4() {
+        const num = Number(document.getElementById("s4").value);
+        const text = isPrime(num);
+        q4.textContent = text;
+      }
+    </script>
+  </body>
+</html>

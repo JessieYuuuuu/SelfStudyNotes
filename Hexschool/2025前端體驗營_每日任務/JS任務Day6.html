@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day6 - if 流程判斷 II</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  -->
+      <div class="item">
+        <p>
+          題目一：日幣計算機 (1:0.32)<br />// input 輸入<br />
+          TWDtoJPY(-1) TWDtoJPY("hi~") TWDtoJPY(2000) TWDtoJPY(320)<br />
+          // output 輸出<br />
+          "...沒錢別來亂" "當我看不懂字串？？" "你換到的日幣有：6250"
+          "你換到的日幣有：1000"
+        </p>
+        <input type="text" id="s1" placeholder="請輸入台幣" />
+        <p>輸出結果：<span class="q1"></span></p>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目二：匯率計算機<br />// input 輸入<br />
+          TWDtoAnother(100,"USD") TWDtoAnother(100,"Sword Art Online")
+          TWDtoAnother(100,"HKD") TWDtoAnother(100,"GBP")<br />// output 輸出<br />
+          "2900" "..." "300" "3500"
+        </p>
+        <div>
+          <input type="number" id="num" placeholder="請輸入台幣" />
+          <input type="radio" class="s2" name="s2" value="USD" />美金：1:29
+          <input type="radio" class="s2" name="s2" value="HKD" />港幣：1:3
+          <input type="radio" class="s2" name="s2" value="GBP" />英鎊：1:35
+        </div>
+        <p>輸出結果：<span class="q2"></span></p>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          題目三：BMI 計算機<br />// input 輸入 <br />BMI(身高,體重)<br />
+          // output 輸出 <br />"正常" "重度肥胖" "中度肥胖" "輕度肥胖" "過重"
+          "過輕"
+        </p>
+        <input type="number" id="s3-1" placeholder="請輸入身高" />
+        <input type="number" id="s3-2" placeholder="請輸入體重" />
+        <p>輸出結果：<span class="q3"></span></p>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          <span style="color: red; font-weight: 600">進階題</span
+          >：字串切割+if<br />// input 輸入<br />
+          如果第一個數字是質數，請將第二、三個數字加總<br />
+          如果第一個數字是偶數，請將第二、三個數字相減<br />
+          如果第一個數字不是質數也不是偶數，請將第二、三個數字相乘<br />
+          sum("13,20,10") sum("10,2,3") sum("9,5,7")<br />
+          // output 輸出 <br />30 -1 35
+        </p>
+        <input type="text" id="s4" placeholder="請輸入數字用','分開" /><br />
+        <p>輸出結果：<span class="q4"></span></p>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      const q4 = document.getElementsByClassName("q4")[0];
+      const q5 = document.getElementsByClassName("q5")[0];
+      // -----1-----
+      function TWDtoJPY(str) {
+        const num = Number(str);
+        if (isNaN(num)) {
+          return `當我看不懂字串？？`;
+        } else {
+          if (num <= 0) {
+            return `...沒錢別來亂`;
+          } else if (num > 0) {
+            return `你換到的日幣有：${num / 0.32}`;
+          }
+        }
+      }
+      function changeQ1() {
+        const str = document.getElementById("s1").value;
+        const text = TWDtoJPY(str);
+        q1.textContent = text;
+      }
+      // -----2-----
+      function TWDtoAnother(str, num) {
+        if (str === "USD") {
+          return `美元${num}可以換到${num * 29}台幣`;
+        } else if (str === "HKD") {
+          return `港幣${num}可以換到${num * 3}台幣`;
+        } else if (str === "GBP") {
+          return `英鎊${num}可以換到${num * 35}台幣`;
+        } else {
+          return `...`;
+        }
+      }
+      function changeQ2() {
+        const num = Number(document.getElementById("num").value);
+        const str = document.querySelector(".s2:checked")?.value;
+        const text = TWDtoAnother(str, num);
+        q2.textContent = text;
+      }
+      // -----3-----
+      function BMI(num1, num2) {
+        const HAndW = num2 / ((num1 / 100) * (num1 / 100));
+        const bmi = Number(HAndW.toFixed(1));
+        let ans = "";
+        if (bmi < 18.5) ans = "過輕";
+        else if (bmi < 24) ans = "正常";
+        else if (bmi < 24) ans = "過重";
+        else if (bmi < 24) ans = "輕度肥胖";
+        else if (bmi < 24) ans = "中度肥胖";
+        else ans = "重度肥胖";
+        return `您的BMI是${bmi}，結果為${ans}`;
+      }
+      function changeQ3() {
+        const num1 = Number(document.getElementById("s3-1").value);
+        const num2 = Number(document.getElementById("s3-2").value);
+        const text = BMI(num1, num2);
+        q3.textContent = text;
+      }
+      // -----4-----
+      function sum(str) {
+        console.log(str);
+        const array = str.split(",");
+        const isPrime = Number(array[0]);
+        const n1 = Number(array[1]);
+        const n2 = Number(array[2]);
+        let prime = [];
+        for (let i = 2; i < isPrime; i++) {
+          if (isPrime % i === 0) {
+            prime.push(i);
+          }
+        }
+        if (prime.length > 0 && isPrime % 2 !== 0) {
+          return `${isPrime}不是質數也不是偶數，${n1} x ${n2} = ${n1 * n2}`;
+        } else if (isPrime % 2 === 0) {
+          return `${isPrime}是偶數，${n1} - ${n2} = ${n1 - n2}`;
+        } else if (prime.length === 0) {
+          return `${isPrime}是質數，${n1} + ${n2} = ${n1 + n2}`;
+        }
+      }
+      function changeQ4() {
+        const str = document.getElementById("s4").value;
+        const text = sum(str);
+        q4.textContent = text;
+      }
+    </script>
+  </body>
+</html>
