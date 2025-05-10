@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day8 - 字串再複習</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  -->
+      <div class="item">
+        <p>題目一：字串輸出</p>
+        <p>
+          // input 輸入<br />
+          callString("apple") callString("banana") callString("qqq")<br />
+          // output 輸出<br />"a-p-p-l-e" "b-a-n-a-n-a" "q-q-q"
+        </p>
+        <input type="text" id="str1" placeholder="請輸入" />
+        <p>輸出結果：<span class="q1"></span></p>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>題目二：字串數量</p>
+        <p>若大於等於五個字元，請只顯示前兩個字</p>
+        <p>
+          <br />// input 輸入<br />
+          checkFiveWord("hello") checkFiveWord("hi~")
+          checkFiveWord("Jackson")<br />// output 輸出<br />
+          "he" "hi~" "Ja"
+        </p>
+        <div>
+          <input type="text" id="s2" placeholder="請輸入" />
+        </div>
+        <p>輸出結果：<span class="q2"></span></p>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>題目三：函式強制正整數相乘</p>
+        <p>
+          // input 輸入 <br />multiply(2,3) multiply(1,3,5) multiply(7,7,7,7,7)
+          multiply(5,3,-2) multiply(4)<br />
+          // output 輸出 <br />6 15 16807 30 4
+        </p>
+        <input
+          type="text"
+          id="s3"
+          placeholder="請輸入一串數字，數字間使用','做區隔"
+        />
+        <p>輸出結果：<span class="q3"></span></p>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <p>
+        之後老師將會出有關 for
+        迴圈，與陣列操作(forEach、map、sort)的題目，還請同學在此分享免費學習資源，文章與影片皆可
+      </p>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      // -----1-----
+      function callString(str) {
+        return str.split("").join("-");
+      }
+      function changeQ1() {
+        const str = document.getElementById("str1").value;
+        const text = callString(str);
+        q1.textContent = text;
+      }
+      // -----2-----
+      function fruitColor(str) {
+        return str.length >= 5 ? str.slice(0, 2) : str;
+      }
+      function changeQ2() {
+        const str = document.getElementById("s2").value;
+        const text = fruitColor(str);
+        q2.textContent = text;
+      }
+      // -----3-----
+      function multiply(str) {
+        const num = str.split(",").map((s) => Math.abs(Number(s.trim())));
+        return num.reduce((now, next) => now * next, 1);
+      }
+      function changeQ3() {
+        const str = document.getElementById("s3").value;
+        const text = multiply(str);
+        q3.textContent = text;
+      }
+    </script>
+  </body>
+</html>

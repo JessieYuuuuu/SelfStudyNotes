@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day9 - background 練習</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      .wrap {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+      }
+
+      .content {
+        max-width: 800px;
+        margin: 0 auto 50px;
+        font-size: 32px;
+        text-shadow: 2px 2px 2px #000;
+      }
+
+      .box1 {
+        height: 240px;
+        background-image: url(https://i.ibb.co/3yhw5PR/string-of-beads.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: green;
+        position: relative;
+        p {
+          color: #fff;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .box2 {
+        height: 240px;
+        background-color: #000;
+        background-image: url(https://i.ibb.co/3yhw5PR/string-of-beads.png);
+        background-repeat: repeat-x;
+        position: relative;
+        p {
+          color: #fff;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>背景圖片使用練習</h1>
+      <h2>設計要求</h2>
+      <ol>
+        <li>box1 為垂直居中的不重複背景圖片，且背景色為 green 文字為白色</li>
+        <li>box2 為從左到右重複背景圖片，背景為黑色 文字為白色</li>
+        <li>
+          背景圖片連結請使用：https://i.ibb.co/3yhw5PR/string-of-beads.png
+        </li>
+      </ol>
+    </div>
+    <div class="content">
+      <div class="box box1">
+        <p>孤單的 box1</p>
+      </div>
+      <div class="box box2">
+        <p>掛一排的 box2</p>
+      </div>
+    </div>
+  </body>
+</html>

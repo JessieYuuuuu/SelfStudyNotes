@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day10 - 陣列 + 物件</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      select {
+        padding: 8px 15px;
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  -->
+      <div class="item">
+        <p>題目一：依照文字描述物件</p>
+        <p>請宣告一個 family 的變數，賦予物件型別，並嘗試在裡頭加上以下資訊</p>
+        <ul>
+          <li>母親叫做Mary</li>
+          <li>父親叫做 Bob</li>
+          <li>有三個孩子，分別叫做 John、Tom、Kate</li>
+          <li>養了五隻貓、七隻狗、八頭牛、九隻蜘蛛</li>
+          <li>房貸是否繳清：否</li>
+        </ul>
+        <p>輸出結果：</p>
+        <pre class="q1"></pre>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>題目二：看圖設計物件</p>
+        <p>
+          請宣告一個 room
+          的變數，賦予物件型別，盡量描述下方圖片內容，例：有多少人開會，男女比例、文具數量等等。
+        </p>
+        <p>輸出結果：</p>
+        <pre class="q2"></pre>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>題目三：擴充物件內容</p>
+        <p>請透過 addKeyValue 函式，來增減 obj 物件內容。</p>
+        <p>const obj = { name people:3 };</p>
+        <p>
+          // input 輸入 <br />addKeyValue("name","Mike") addKeyValue("people",2)
+          addKeyValue("people",4)
+          <br />
+          // output 輸出 <br />//1 { name:"Mike", people:3 } //2 { name:"Mike",
+          people:5 } //3 { name:"Mike", people:9 }
+        </p>
+        <select name="s3-1" id="s3-1">
+          <option value="name">姓名</option>
+          <option value="people">人數</option>
+        </select>
+        <input type="text" id="s3-2" placeholder="請輸入值" />
+        <p>輸出結果：</p>
+        <pre class="q3"></pre>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          <span style="color: red; font-weight: 600">進階題</span>請宣告一個 obj
+          函式，並用obj()[2]()方式執行，並會 return 回傳 "hi"<br />
+          // input 輸入 <br />
+          obj()[2]()<br />
+          // output 輸出 <br />"hi"
+        </p>
+        <input type="text" id="s4" placeholder="請輸入" /><br />
+        <p>輸出結果：<span class="q4"></span></p>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      const q4 = document.getElementsByClassName("q4")[0];
+      // -----1-----
+      function changeQ1() {
+        const family = {
+          mother: "Mary",
+          father: "Bob",
+          children: ["John", "Tom", "Kate"],
+          pets: { cat: 5, dog: 7, cows: 8, spiders: 9 },
+          hasMortgage: true,
+        };
+        q1.textContent = JSON.stringify(family, null, 2);
+      }
+      // -----2-----
+      function changeQ2() {
+        const room = {
+          people: {
+            man: 2,
+            woman: 3,
+          },
+          device: {
+            laptop: 4,
+            desktop: 1,
+            phone: 2,
+          },
+          furniture: {
+            table: 3,
+            chair: 6,
+          },
+        };
+        q2.textContent = JSON.stringify(room, null, 2);
+      }
+      // -----3-----
+      const obj = {
+        name: "",
+        people: 3,
+      };
+      function addKeyValue(key, value) {
+        const numValue = Number(value);
+        if (key === "people") {
+          obj.people += numValue;
+        } else {
+          obj[key] = value;
+        }
+        return obj;
+      }
+      function changeQ3() {
+        const str1 = document.getElementById("s3-1").value;
+        const str2 = document.getElementById("s3-2").value;
+        const text = addKeyValue(str1, str2);
+        q3.textContent = JSON.stringify(text, null, 2);
+      }
+      // -----4-----
+      function sum(str) {
+        console.log(str);
+        const array = str.split(",");
+        const isPrime = Number(array[0]);
+        const n1 = Number(array[1]);
+        const n2 = Number(array[2]);
+        let prime = [];
+        for (let i = 2; i < isPrime; i++) {
+          if (isPrime % i === 0) {
+            prime.push(i);
+          }
+        }
+        if (prime.length > 0 && isPrime % 2 !== 0) {
+          return `${isPrime}不是質數也不是偶數，${n1} x ${n2} = ${n1 * n2}`;
+        } else if (isPrime % 2 === 0) {
+          return `${isPrime}是偶數，${n1} - ${n2} = ${n1 - n2}`;
+        } else if (prime.length === 0) {
+          return `${isPrime}是質數，${n1} + ${n2} = ${n1 + n2}`;
+        }
+      }
+      function changeQ4() {
+        const str = document.getElementById("s4").value;
+        const text = sum(str);
+        q4.textContent = text;
+      }
+    </script>
+  </body>
+</html>

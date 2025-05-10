@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day7 - if 流程判斷 III</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 100vw;
+      }
+      .wrap {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .item {
+        width: 28%;
+        border: 1px solid #aaa;
+        padding: 20px;
+      }
+      p {
+        line-height: 200%;
+      }
+      button {
+        padding: 5px 3px;
+        width: 50%;
+        border: none;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: #f2e99e;
+      }
+      input {
+        padding: 15px 10px;
+        border: 1px solid #ff8c42;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  -->
+      <div class="item">
+        <p>題目一：有沒有打折</p>
+        <p>某廠商大拍賣，折扣表如下：</p>
+        <ul>
+          <li>未滿2000無折扣</li>
+          <li>2000~2999 -> 9折</li>
+          <li>3000~3999 -> 8折</li>
+          <li>高於 4000 -> 7折</li>
+        </ul>
+        <p>
+          // input 輸入<br />
+          sale(5000) sale(2500) sale(3300) sale(200)<br />
+          // output 輸出<br />
+          3500 2250 2640 200
+        </p>
+        <input type="number" id="num1" placeholder="請輸入購買金額" />
+        <p>輸出結果：<span class="q1"></span></p>
+        <p>結果如有小數點，將四捨五入</p>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>題目二：水果顏色查詢機</p>
+        <p>
+          輸入一個水果名稱，它就回傳對應的顏色<br />
+          若不是已知的水果，就回覆「查無此水果」
+        </p>
+        <p>參考對照表</p>
+        <ul>
+          <li>香蕉 -> 黃色</li>
+          <li>蘋果 -> 紅色</li>
+          <li>葡萄 -> 紫色</li>
+          <li>奇異果 -> 綠色</li>
+          <li>橘子 -> 橘色</li>
+          <li>藍莓 -> 藍色</li>
+          <li>非以上 -> 查無此水果</li>
+        </ul>
+        <p>
+          <br />// input 輸入<br />
+          fruitColor("香蕉") fruitColor("奇異果") fruitColor("小當家")<br />//
+          output 輸出<br />
+          "黃色" "綠色" "查無此水果"
+        </p>
+        <div>
+          <input type="text" id="s2" placeholder="請輸入欲查詢水果" />
+        </div>
+        <p>輸出結果：<span class="q2"></span></p>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>題目三：年薪計算機</p>
+        <p>以下是梅添良軟體公司的計薪方式</p>
+        <ul>
+          <li>每個月固定支薪，不幫員工保勞健保</li>
+          <li>三節沒禮金，也沒任何獎金</li>
+          <li>只有月薪、年終</li>
+        </ul>
+        <p>年薪計算</p>
+        <ul>
+          <li>未滿一年，不會有年終</li>
+          <li>待超過一年的員工，年終會有 1 個月</li>
+          <li>待超過五年的員工，年終會有 1.3 個月</li>
+        </ul>
+        <p>
+          // input 輸入 <br />annualSalary(10000,0.8) annualSalary(12000,1.5)
+          annualSalary(20000,10)<br />
+          // output 輸出 <br />"120000" "156000" "266000"
+        </p>
+        <input type="number" id="s3-1" placeholder="請輸入月薪" />
+        <input type="number" id="s3-2" placeholder="請輸入在職月數" />
+        <p>輸出結果：<span class="q3"></span></p>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+      <!--  -->
+      <div class="item">
+        <p>
+          <span style="color: red; font-weight: 600">魔王題</span
+          >梅添良薪水數字大小寫轉換<br />
+          老闆開發票時，很不擅長數字小寫轉大寫，請幫助他這個金魚腦<br />
+          // input 輸入 <br />
+          changeCapital(35000) changeCapital(9876543210) changeCapital(-33)
+          changeCapital("安安") changeCapital("033")<br />
+          // output 輸出 <br />"參萬伍仟元整"
+          "玖拾捌億柒仟陸佰伍拾肆萬參仟貳佰壹拾元整" "格式錯誤" "格式錯誤"
+          "參拾參元整"
+        </p>
+        <input type="text" id="s4" placeholder="請輸入" /><br />
+        <p>輸出結果：<span class="q4"></span></p>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+    </div>
+    <script>
+      const q1 = document.getElementsByClassName("q1")[0];
+      const q2 = document.getElementsByClassName("q2")[0];
+      const q3 = document.getElementsByClassName("q3")[0];
+      const q4 = document.getElementsByClassName("q4")[0];
+      // -----1-----
+      function sale(num) {
+        if (num >= 4000)
+          return `享滿額七折優惠，折扣後為${Math.round(num * 0.7)}`;
+        if (num >= 3000 && num <= 3999)
+          return `享滿額八折優惠，折扣後為${Math.round(num * 0.8)}`;
+        if (num >= 2000 && num <= 2999)
+          return `享滿額九折優惠，折扣後為${Math.round(num * 0.9)}`;
+        if (num < 2000) return `金額為${Math.round(num)}`;
+      }
+      function changeQ1() {
+        const num = document.getElementById("num1").value;
+        const text = sale(num);
+        q1.textContent = text;
+      }
+      // -----2-----
+      function fruitColor(str) {
+        if (str === "香蕉") return `${str} 是黃色的！`;
+        if (str === "蘋果") return `${str} 是紅色的！`;
+        if (str === "葡萄") return `${str} 是紫色的！`;
+        if (str === "奇異果") return `${str} 是綠色的！`;
+        if (str === "橘子") return `${str} 是橘色的！`;
+        if (str === "藍莓") return `${str} 是藍色的！`;
+        else return `資料庫內查無 ${str}！`;
+      }
+      function changeQ2() {
+        const str = document.getElementById("s2").value;
+        const text = fruitColor(str);
+        q2.textContent = text;
+      }
+      // -----3-----
+      function annualSalary(num1, num2) {
+        num = Math.round((num2 / 12) * 100) / 100;
+        console.log(num);
+        if (num < 1)
+          return `您的年資為 ${num2} 個月，未滿一年，年薪為${num1 * 12}元`;
+        if (num >= 1 && num < 5)
+          return `您的年資為 ${num} 年，年薪為${num1 * 13}元`;
+        if (num >= 5) return `您的年資為 ${num} 年，年薪為${num1 * 13.3}元`;
+      }
+      function changeQ3() {
+        const num1 = Number(document.getElementById("s3-1").value);
+        const num2 = Number(document.getElementById("s3-2").value);
+        const text = annualSalary(num1, num2);
+        q3.textContent = text;
+      }
+      // -----4-----
+      function changeCapital(str) {
+        if (isNaN(Number(str)) || Number(str) < 0) {
+          return `格式錯誤，請輸入正整數`;
+        }
+      }
+      function changeQ4() {
+        const str = document.getElementById("s4").value;
+        const text = changeCapital(str);
+        q4.textContent = text;
+      }
+    </script>
+  </body>
+</html>

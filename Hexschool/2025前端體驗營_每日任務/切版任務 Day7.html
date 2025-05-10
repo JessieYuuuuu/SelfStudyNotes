@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day7 - position 技巧補充</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      p {
+        padding: 20px 0;
+      }
+      .box-blue {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+      }
+
+      .box-red {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      需求：利用「fixed固定定位」將藍色方塊置於視窗的右下角、紅色方塊則利用「absolute絕對定位」至於視窗左下角。
+    </p>
+    <div class="box-blue"></div>
+    <div class="box-red"></div>
+  </body>
+</html>
