@@ -187,10 +187,59 @@
         q3.textContent = text;
       }
       // -----4-----
+      // angeCapital("48886400000"); //bug
       function changeCapital(str) {
-        if (isNaN(Number(str)) || Number(str) < 0) {
+        const num = Number(str);
+        console.log("num", num);
+        // const str1 = [玖捌柒陸伍肆參貳壹元];
+        const str1 = [
+          "零",
+          "壹",
+          "貳",
+          "參",
+          "肆",
+          "伍",
+          "陸",
+          "柒",
+          "捌",
+          "玖",
+        ];
+        const str2 = ["", "拾", "佰", "仟"];
+        const str3 = ["", "萬", "億", "兆"];
+        let result = "";
+
+        if (isNaN(num) || num < 0) {
           return `格式錯誤，請輸入正整數`;
+        } else {
+          const numReStr = num.toString().split("").reverse();
+          console.log("numReStr", numReStr);
+          let isZero = false;
+          for (let i = 0; i < numReStr.length; i++) {
+            const n = Number(numReStr[i]);
+            const x = i % 4; // str2的位置
+            const y = Math.floor(i / 4); // str3的位置(無條件捨去)
+            if (n === 0) {
+              if (!isZero) {
+                isZero = true;
+                if (x !== 0 && i !== numReStr.length - 1)
+                  result = str1[n] + result;
+              }
+            } else {
+              isZero = false;
+              let ans = str1[n] + str2[x];
+              if (x === 0) ans += str3[y];
+              result = ans + result;
+            }
+          }
         }
+        result = result.replace(/零+/g, "零"); // 兩個以上的零，變成一個
+        result = result.replace(/零(萬|億|兆)/g, "$1"); // 去掉萬、億、兆前面的零
+        result = result.replace(/(萬|億|兆)零/g, "$1"); // 去掉萬、億、兆後面的零
+        result = result.replace(/^壹拾/g, "拾"); // 壹拾 -> 拾
+        result = result.replace(/零+$/g, ""); // 零在最後就去掉
+        result += "元整";
+        console.log("result", result);
+        return result;
       }
       function changeQ4() {
         const str = document.getElementById("s4").value;

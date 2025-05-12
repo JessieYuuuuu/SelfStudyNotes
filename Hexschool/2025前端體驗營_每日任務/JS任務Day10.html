@@ -104,7 +104,7 @@
           obj()[2]()<br />
           // output 輸出 <br />"hi"
         </p>
-        <input type="text" id="s4" placeholder="請輸入" /><br />
+        <!-- <input type="text" id="s4" placeholder="請輸入" /><br /> -->
         <p>輸出結果：<span class="q4"></span></p>
         <button onclick="changeQ4()">按我</button>
       </div>
@@ -165,29 +165,17 @@
         q3.textContent = JSON.stringify(text, null, 2);
       }
       // -----4-----
-      function sum(str) {
-        console.log(str);
-        const array = str.split(",");
-        const isPrime = Number(array[0]);
-        const n1 = Number(array[1]);
-        const n2 = Number(array[2]);
-        let prime = [];
-        for (let i = 2; i < isPrime; i++) {
-          if (isPrime % i === 0) {
-            prime.push(i);
-          }
-        }
-        if (prime.length > 0 && isPrime % 2 !== 0) {
-          return `${isPrime}不是質數也不是偶數，${n1} x ${n2} = ${n1 * n2}`;
-        } else if (isPrime % 2 === 0) {
-          return `${isPrime}是偶數，${n1} - ${n2} = ${n1 - n2}`;
-        } else if (prime.length === 0) {
-          return `${isPrime}是質數，${n1} + ${n2} = ${n1 + n2}`;
-        }
+      function obj2() {
+        return [
+          "我是a",
+          "我是b",
+          function () {
+            return "hi";
+          },
+        ];
       }
       function changeQ4() {
-        const str = document.getElementById("s4").value;
-        const text = sum(str);
+        const text = obj2()[2]();
         q4.textContent = text;
       }
     </script>
