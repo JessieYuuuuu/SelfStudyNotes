@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day15 - 從不同資料集，尋找規律性</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 80vw;
+        margin: 0 auto;
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1.8;
+        background-color: #f8f9fa;
+      }
+
+      .wrap {
+        padding: 20px 0;
+      }
+
+      .item {
+        background: #f6e7b4;
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .item p {
+        margin: 8px 0;
+      }
+
+      pre {
+        background-color: #f5ebc7;
+        border-radius: 8px;
+        padding: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        background-color: #4e7d63;
+        color: #fff9db;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #3e634f;
+      }
+
+      input {
+        margin-top: 8px;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid #aaa;
+        margin-right: 8px;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #4e7d63;
+        box-shadow: 0 0 0 2px rgba(78, 125, 99, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 題目一 -->
+      <div class="item">
+        <p><strong>題目一：判斷是否有值</strong></p>
+        <p>判斷帶入參數是否有陣列中的值</p>
+        <pre>
+const numAry = [1,3,4,6,8];
+
+// input 輸入
+checkNum(3)
+checkNum(9)
+checkNum(83)
+checkNum(6)
+
+// output 輸出
+true
+false
+false
+true
+        </pre>
+        <input type="text" id="input1" placeholder="請輸入數字" />
+        <pre class="q1"></pre>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+
+      <!-- 題目二 -->
+      <div class="item">
+        <p><strong>題目二：刪除值</strong></p>
+        <p>若陣列中有值則刪除指定資料並回傳 deletAry，否則回傳 false</p>
+        <pre>
+const deletAry = [1,3,4,6,8];
+
+// input 輸入
+delNum(3)
+delNum(9)
+delNum(83)
+delNum(6)
+
+// output 輸出
+[1,4,6,8]
+false
+false
+[1,4,8]
+        </pre>
+        <input type="text" id="input2" placeholder="請輸入要刪除的數字" />
+        <pre class="q2"></pre>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+
+      <!-- 題目三 -->
+      <div class="item">
+        <p><strong>題目三：兩個陣列尋找相同數字</strong></p>
+        <p>請找出 a 與 b 陣列裡面，若有相同數值則篩選出來成為一個陣列</p>
+        <pre>
+const a = [1,3,4,6,8];
+const b = [3,6,12];
+
+// input 輸入
+checkSame(a, b)
+
+// output 輸出
+[3,6]
+        </pre>
+        <pre class="q3"></pre>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+    </div>
+
+    <script>
+      const q1 = document.querySelector(".q1");
+      const q2 = document.querySelector(".q2");
+      const q3 = document.querySelector(".q3");
+      const numAry = [1, 3, 4, 6, 8];
+      function checkNum(num) {
+        return numAry.includes(num);
+      }
+      function changeQ1() {
+        const num = Number(document.getElementById("input1").value);
+        const result = checkNum(num);
+        console.log(result);
+        q1.textContent = result;
+      }
+      const deletAry = [1, 3, 4, 6, 8];
+      function delNum(num) {
+        if (!deletAry.includes(num)) {
+          return false;
+        } else {
+          deletAry.splice(deletAry.indexOf(num), 1);
+          return deletAry;
+        }
+      }
+      function changeQ2() {
+        const num = Number(document.getElementById("input2").value);
+        const result = delNum(num);
+        q2.textContent = result;
+      }
+      const ary1 = [1, 3, 4, 6, 8];
+      const ary2 = [3, 6, 12, 8];
+
+      function checkSame(ary1, ary2) {
+        return ary1.filter((item) => ary2.includes(item));
+      }
+      function changeQ3() {
+        const result = checkSame(ary1, ary2);
+        q3.textContent = result;
+      }
+    </script>
+  </body>
+</html>

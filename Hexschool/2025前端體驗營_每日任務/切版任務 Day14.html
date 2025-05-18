@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day14 - HTML、CSS 觀念補給</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 80vw;
+        margin: 0 auto;
+        font-family: "Noto Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+      div {
+        padding: 10px 20px;
+        background: #f2e99e;
+        margin: 20px 0;
+        border-radius: 30px;
+      }
+      p {
+        line-height: 200%;
+      }
+      .Question {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .Answer {
+        font-weight: 500;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p class="Question">Q1 以下 CSS 選擇器哪個錯誤？</p>
+      <p>A. .container</p>
+      <p>B. #title1</p>
+      <p>C. li > a > img</p>
+      <p class="Answer">D. $style1</p>
+    </div>
+
+    <div>
+      <p class="Question">Q2 以下關於 HTML 與 CSS 的說明哪個有誤？</p>
+      <p>A. img 的 alt 屬性是用來給視障人士使用並且當做圖片失效時顯示的</p>
+      <p>B. a 標籤的擬態選擇器有 :hover :active</p>
+      <p class="Answer">C. 如果要改變 a 標籤大小，需要加上 display: inline;</p>
+      <p>D. 默認的文字大小是 16px</p>
+    </div>
+
+    <div>
+      <p class="Question">Q3 關於列表標籤的說明哪個有誤？</p>
+      <p>A. ol 是有序列表 裡面的 li 會有 123 等數字排序</p>
+      <p>B. 所有主流瀏覽器都支持 ol 標籤</p>
+      <p class="Answer">C. ul 是有序列表 裡面的 li 會有 123 等數字排序</p>
+      <p>D. ol ul 的內層都是 li 標籤</p>
+    </div>
+
+    <div>
+      <p class="Question">Q4 下列選項中哪一個標籤不是區塊元素？</p>
+      <p>A. &lt;p&gt;&lt;/p&gt;</p>
+      <p>B. &lt;h1&gt;&lt;/h1&gt;</p>
+      <p class="Answer">C. &lt;img /&gt;</p>
+      <p>D. &lt;div&gt;&lt;/div&gt;</p>
+    </div>
+
+    <div>
+      <p class="Question">
+        Q5 我想讓 a 連結按鈕距離上方與下方的 div 區塊各 10px
+        高度，哪個選項寫法正確？
+      </p>
+      <p>A. margin: 0 10px; display: block;</p>
+      <p>B. padding: 10px 0;</p>
+      <p>C. padding: 0 10px;</p>
+      <p class="Answer">D. margin: 10px 0; display: block;</p>
+    </div>
+
+    <div>
+      <p class="Question">Q6 製作響應式網頁時 header 中必須加入什麼東西？</p>
+      <p>A. &lt;meta media="true" /&gt;</p>
+      <p class="Answer">
+        B. &lt;meta name="viewport" content="width=device-width,
+        initial-scale=1.0" /&gt;
+      </p>
+      <p>C. &lt;script src="./viewport.js"&gt;&lt;/script&gt;</p>
+    </div>
+
+    <div>
+      <p class="Question">Q7 在響應式網頁中嚴格禁止出現以下哪個東西？</p>
+      <p class="Answer">A. X 軸</p>
+      <p>B. Y 軸</p>
+      <p>C. Z 軸</p>
+    </div>
+
+    <div>
+      <p class="Question">Q8 關於響應式網頁的說法以下何者「錯誤」？</p>
+      <p>A. RWD 是 Responsive Web Design 的簡稱</p>
+      <p class="Answer">
+        B. @media (max-width: 400px) {...} 表示當螢幕尺寸大於等於 400px 就會套用
+        {...} 中撰寫的樣式
+      </p>
+      <p>
+        C. @media (max-width: 400px) {...} 表示當螢幕尺寸小於等於 400px 就會套用
+        {...} 中撰寫的樣式
+      </p>
+    </div>
+  </body>
+</html>

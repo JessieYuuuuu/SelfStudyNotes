@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day13 - container 概念</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      /* 請修改此處 */
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      .container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .container h2 {
+        font-size: 1.75rem;
+        margin-bottom: 10px;
+      }
+
+      .container p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="block">
+        <img src="https://picsum.photos/800/400?random=21" alt="示意圖一" />
+        <h2>什麼是 Container？</h2>
+        <p>
+          Container 是一種常見的版面排版技巧，用來限制網頁內容的最大寬度，
+          並在不同裝置上提供一致的排版體驗。透過 max-width 搭配 auto margin，
+          我們可以讓內容在畫面中水平置中。
+        </p>
+      </section>
+
+      <section class="block">
+        <img src="https://picsum.photos/800/400?random=22" alt="示意圖二" />
+        <h2>為什麼需要 Container？</h2>
+        <p>
+          當使用者在大螢幕設備（像是電腦）上瀏覽網頁時，若沒有設定寬度限制，
+          文字和圖片會被撐得太寬，降低閱讀舒適度。因此我們會使用 container，
+          來幫內容「設限」，提升可讀性與設計感。
+        </p>
+      </section>
+
+      <section class="block">
+        <img src="https://picsum.photos/800/400?random=23" alt="示意圖三" />
+        <h2>Container 常見搭配</h2>
+        <p>
+          Container 通常會搭配 padding，確保內容不會貼齊邊緣。 同時也會使用 RWD
+          技巧，在小螢幕下使用百分比寬度、或調整 padding 值，
+          讓使用者無論在哪個裝置上都能獲得良好的使用體驗。
+        </p>
+      </section>
+    </div>
+    <div class="container">
+      <h1>歡迎來到我的網站</h1>
+      <p>
+        這是一個練習 container 排版與 RWD 的範例。無論你使用電腦、平板或手機，
+        這段文字都會以適合的寬度顯示，保持閱讀體驗良好。
+      </p>
+    </div>
+  </body>
+</html>

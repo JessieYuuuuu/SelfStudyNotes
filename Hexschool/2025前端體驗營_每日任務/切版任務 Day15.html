@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day15 - RWD 觀念補給</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 80vw;
+        margin: 0 auto;
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1.8;
+      }
+      div.question-block {
+        background: #d0e8f2;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 20px 0;
+      }
+      p.question-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      pre {
+        background: #f4f4f4;
+        padding: 10px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+      }
+      .Answer {
+        font-weight: 500;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="question-block">
+      <p class="question-title">第一題</p>
+      <p>請說明 Mobile First 設計與 Desktop First 設計分別是什麼意思？</p>
+      <div class="Answer">
+        <p>Mobile First</p>
+        <p>從小螢幕開始設計，並透過 min-width 的 media query 向上擴展設計。</p>
+        <p>Desktop First</p>
+        <p>從大螢幕開始設計，並使用 max-width 的 media query 向下調整樣式。</p>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <p class="question-title">第二題</p>
+      <p>
+        請問下方代碼這種寫法是屬於 Mobile First 設計還是 Desktop First 設計？
+      </p>
+      <p class="Answer">
+        Mobile First，使用 min-width 的 media query進行樣式限定。
+      </p>
+      <pre><code>.item {
+        width: 100%;
+      }
+      @media (min-width: 768px) {
+  .item {
+    width: 50%;
+  }
+}
+@media (min-width: 1440px) {
+  .item {
+    width: 25%;
+  }
+}</code></pre>
+    </div>
+
+    <div class="question-block">
+      <p class="question-title">第三題</p>
+      <p>請問當螢幕寬度小於 414px 時 content 寬度為多少？為什麼？</p>
+      <p class="Answer">寬度為100%，符合max-width: 414px</p>
+      <p><strong>HTML：</strong></p>
+      <pre><code>&lt;body&gt;
+    &lt;div class="content"&gt;&lt;/div&gt;
+    &lt;/body&gt;</code></pre>
+      <p><strong>CSS：</strong></p>
+      <pre><code>.content {
+      width: 25%;
+      margin: 10px;
+    }
+    @media (max-width: 414px) {
+      .content {
+        width: 100%;
+      }
+    }
+    @media (max-width: 768px) {
+      .content {
+        width: 50%;
+      }
+    }</code></pre>
+    </div>
+  </body>
+</html>

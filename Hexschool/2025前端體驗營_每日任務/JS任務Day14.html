@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day14 - 陣列物件資料處理</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 80vw;
+        margin: 0 auto;
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1.8;
+        background-color: #f8f9fa;
+      }
+
+      .wrap {
+        padding: 20px 0;
+      }
+
+      .item {
+        background: #f6e7b4;
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .item p {
+        margin: 8px 0;
+      }
+
+      pre {
+        background-color: #f5ebc7;
+        border-radius: 8px;
+        padding: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        background-color: #4e7d63;
+        color: #fff9db;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #3e634f;
+      }
+
+      input {
+        margin-top: 8px;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid #aaa;
+        margin-right: 8px;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #4e7d63;
+        box-shadow: 0 0 0 2px rgba(78, 125, 99, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 題目一 -->
+      <div class="item">
+        <p><strong>題目一：物件加值</strong></p>
+        <p>請透過 addContent 函式，來增減 obj 物件內容。</p>
+        <pre>
+const obj = {
+  sons: []
+}
+
+// input 輸入
+addContent("Bob")
+addContent("Tom")
+        </pre>
+        <p>// output 輸出 obj 的結果</p>
+        <pre>
+{
+  sons: ["Bob"]
+}
+
+{
+  sons: ["Bob", "Tom"]
+}
+        </pre>
+        <input type="text" id="input1" placeholder="請輸入名字" />
+        <pre class="q1"></pre>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+
+      <!-- 題目二 -->
+      <div class="item">
+        <p><strong>題目二：陣列加值（物件形式）</strong></p>
+        <p>請透過 addContent2 函式，來增減 obj2 陣列內容。</p>
+        <pre>
+const obj2 = []
+
+// input 輸入
+addContent2("Bob")
+addContent2("Tom")
+        </pre>
+        <p>// output 輸出 obj2 的結果</p>
+        <pre>
+[
+  { name: "Bob" }
+]
+
+[
+  { name: "Bob" },
+  { name: "Tom" }
+]
+        </pre>
+        <input type="text" id="input2" placeholder="請輸入名字" />
+        <pre class="q2"></pre>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+
+      <!-- 題目三 -->
+      <div class="item">
+        <p><strong>題目三：統計物件加值</strong></p>
+        <p>請透過 addContent3 函式，來增加 obj3 物件內容。</p>
+        <pre>
+const obj3 = {
+  male: 0,
+  female: 0
+}
+
+// input 輸入
+addContent3("male")
+addContent3("male")
+addContent3("female")
+        </pre>
+        <p>// output 輸出 obj3 的結果</p>
+        <pre>
+{ male: 1, female: 0 }
+
+{ male: 2, female: 0 }
+
+{ male: 2, female: 1 }
+        </pre>
+        <select id="input3">
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </select>
+        <pre class="q3"></pre>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+    </div>
+
+    <script>
+      const q1 = document.querySelector(".q1");
+      const q2 = document.querySelector(".q2");
+      const q3 = document.querySelector(".q3");
+      const obj = {
+        sons: [],
+      };
+      function addContent(str) {
+        if (str) {
+          obj.sons.push(str);
+          return obj;
+        }
+        return "請輸入名稱！";
+      }
+      function changeQ1() {
+        const str = document.getElementById("input1").value;
+        const result = addContent(str);
+        q1.textContent = JSON.stringify(result, null, 2);
+      }
+
+      const obj2 = [];
+      function addContent2(str) {
+        if (str) {
+          obj2.push({ name: str });
+          return obj2;
+        }
+        return "請輸入名稱！";
+      }
+      function changeQ2() {
+        const str = document.getElementById("input2").value;
+        const result = addContent2(str);
+        q2.textContent = JSON.stringify(result, null, 2);
+      }
+      const obj3 = { male: 0, female: 0 };
+      function addContent3(str) {
+        if (obj3.hasOwnProperty(str)) {
+          obj3[str]++;
+        }
+        return obj3;
+      }
+      function changeQ3() {
+        const str = document.getElementById("input3").value;
+        const result = addContent3(str);
+        q3.textContent = JSON.stringify(result, null, 2);
+      }
+    </script>
+  </body>
+</html>

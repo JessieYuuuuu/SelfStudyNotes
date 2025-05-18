@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 任務 Day12 - 函式、陣列、物件讀取</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <style>
+      body {
+        width: 80vw;
+        margin: 0 auto;
+        font-family: "Noto Sans", sans-serif;
+        line-height: 1.8;
+        background-color: #f8f9fa;
+      }
+
+      .wrap {
+        padding: 20px 0;
+      }
+
+      .item {
+        background: #f6e7b4; /* 調整後的淡黃色（偏卡其） */
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .item p {
+        margin: 8px 0;
+      }
+
+      pre,
+      .q4 {
+        background-color: #f5ebc7; /* 內文區塊底色 */
+        border-radius: 8px;
+        padding: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        background-color: #4e7d63; /* 墨綠 */
+        color: #fff9db; /* 淡黃色系文字 */
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #3e634f;
+      }
+
+      input,
+      select {
+        margin-top: 8px;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid #aaa;
+        margin-right: 8px;
+        transition: border-color 0.3s ease;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #4e7d63;
+        box-shadow: 0 0 0 2px rgba(78, 125, 99, 0.2);
+      }
+
+      span.q4 {
+        display: inline-block;
+        background-color: #e0d18a;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        font-family: "Courier New", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- 題目一 -->
+      <div class="item">
+        <p><strong>題目一：函式 return 物件</strong></p>
+        <p>// input 輸入</p>
+        <pre>
+a().hi
+a().sayYo
+a().cry
+        </pre>
+        <p>// output 輸出</p>
+        <pre>
+"hi"
+"yo~"
+"嗚嗚"
+        </pre>
+        <p>輸出結果：</p>
+        <pre class="q1"></pre>
+        <button onclick="changeQ1()">按我</button>
+      </div>
+
+      <!-- 題目二 -->
+      <div class="item">
+        <p><strong>題目二：陣列包函式</strong></p>
+        <p>// input 輸入</p>
+        <pre>
+b[0](3)
+b[0](4)
+        </pre>
+        <p>// output 輸出</p>
+        <pre>
+"你輸入的是3"
+"你輸入的是4"
+        </pre>
+        <input type="num" id="num" placeholder="請輸入數字" />
+        <p>輸出結果：</p>
+        <pre class="q2"></pre>
+        <button onclick="changeQ2()">按我</button>
+      </div>
+
+      <!-- 題目三 -->
+      <div class="item">
+        <p><strong>題目三：物件包函式</strong></p>
+        <p>// input 輸入</p>
+        <pre>
+obj.a()
+obj.b()
+        </pre>
+        <p>// output 輸出</p>
+        <pre>
+"你執行的是 a 函式"
+"你執行的是 b 函式"
+        </pre>
+        <p>輸出結果：</p>
+        <pre class="q3"></pre>
+        <button onclick="changeQ3()">按我</button>
+      </div>
+
+      <!-- 題目四 -->
+      <div class="item">
+        <p><strong>題目四：進階題 - arguments return function</strong></p>
+        <p>// input 輸入</p>
+        <pre>
+sum(4,5)
+sum(4)(5)
+sum(7,9)
+sum(7)(9)
+        </pre>
+        <p>// output 輸出</p>
+        <pre>
+9
+9
+16
+16
+        </pre>
+        <p>輸出結果：</p>
+        <pre class="q4"></pre>
+        <button onclick="changeQ4()">按我</button>
+      </div>
+    </div>
+
+    <script>
+      const q1 = document.querySelector(".q1");
+      const q2 = document.querySelector(".q2");
+      const q3 = document.querySelector(".q3");
+      const q4 = document.querySelector(".q4");
+
+      function a() {
+        return {
+          hi: "hi",
+          sayYo: "yo~~",
+          cay: "嗚嗚",
+        };
+      }
+      function changeQ1() {
+        const result = `${a().hi}\n${a().sayYo}\n${a().cay}`;
+        q1.textContent = result;
+      }
+      const b = [
+        function (num) {
+          if (!num) {
+            return "你還沒輸入喔!";
+          }
+          return `你輸入的是 ${num}`;
+        },
+      ];
+      function changeQ2() {
+        const num = document.getElementById("num").value;
+        const result = b[0](num);
+        q2.textContent = result;
+      }
+      const obj = {
+        a: () => {
+          return "你執行的是 a 函式";
+        },
+        b: () => {
+          return "你執行的是 b 函式";
+        },
+      };
+      function changeQ3() {
+        result = `${obj.a()}\n${obj.b()}`;
+        q3.textContent = result;
+      }
+      function sum(a, b) {
+        if (b !== undefined) {
+          return a + b;
+        }
+        return function (c) {
+          return a + c;
+        };
+      }
+      function changeQ4() {
+        const result = [sum(4, 5), sum(4)(5), sum(7, 9), sum(7)(9)].join(",");
+        q4.textContent = result;
+      }
+    </script>
+  </body>
+</html>

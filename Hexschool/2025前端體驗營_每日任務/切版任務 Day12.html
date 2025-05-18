@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切版任務 Day12 - flex 運用</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Sans+TC:wght@100..900&family=Noto+Sans:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tourney:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      p,
+      h1,
+      a,
+      button {
+        font-family: "Noto Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+      }
+      .wrap {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .logo {
+        font-size: 24px;
+        margin-bottom: 40px;
+        font-weight: 700;
+      }
+      .nav ul {
+        display: flex;
+        justify-content: center;
+        gap: 72px;
+        background: #a6a5c4;
+        font-size: 18px;
+        a {
+          padding: 14px 0;
+          width: 100%;
+          display: inline-block;
+          color: #000;
+          font-weight: 600;
+          text-decoration: none;
+        }
+        a:hover {
+          background: #deb068;
+          transition: 0.3s;
+        }
+      }
+      .content {
+        margin-top: 24px;
+        display: flex;
+        gap: 16px;
+      }
+      .left {
+        flex: 1;
+        width: 380px;
+        height: 380px;
+        background: #deb068;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 5px;
+      }
+      .right {
+        flex: 1;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .right-btn-box {
+        display: flex;
+        justify-content: space-between;
+        button {
+          width: 120px;
+          font-size: 14px;
+          font-weight: 600;
+          background: #d4dcd6;
+          padding: 12px 0;
+          border: none;
+          &:hover {
+            background: #44617b;
+            color: #fff;
+            transition: 0.3s;
+            cursor: pointer;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1 class="logo">DORKEN</h1>
+      <div class="nav">
+        <ul>
+          <li><a href="#">最新資訊</a></li>
+          <li><a href="#">促銷活動</a></li>
+          <li><a href="#">休閒鞋類</a></li>
+          <li><a href="#">工作鞋類</a></li>
+          <li><a href="#">兒童鞋類</a></li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="left">
+          <p>380px * 380px</p>
+          <p>color:#DEB068</p>
+        </div>
+        <div class="right">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+            quis, vero quaerat debitis ea omnis ratione? Voluptatem, quibusdam
+            dolor reprehenderit recusandae minima voluptates accusantium
+            asperiores molestias? Saepe eveniet fugiat asperiores. <br />Tempora
+            assumenda omnis harum explicabo. Ipsa, tempora sequi! Aliquam
+            excepturi id illo perferendis fuga eligendi doloremque, praesentium
+            recusandae minus quam et odio tempore sequi qui? Facere quasi ipsum
+            corrupti culpa.
+          </p>
+          <div class="right-btn-box">
+            <button>上一頁</button><button>下一頁</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
